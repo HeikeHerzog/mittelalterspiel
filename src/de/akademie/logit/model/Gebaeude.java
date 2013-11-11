@@ -1,6 +1,5 @@
 package de.akademie.logit.model;
 
-public class Marktplatz
-{
+public abstract class Gebaeude {
 
 }
