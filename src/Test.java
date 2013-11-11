@@ -12,7 +12,7 @@ public class Test {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("Hallo Du Welt von Heike und Paul");
+		System.out.println("Hallo Du Welt von Heike und Paul und Jutta");
 
 	}
 
