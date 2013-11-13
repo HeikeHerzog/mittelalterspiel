@@ -12,10 +12,11 @@ public class Titel
 	public Titel()
 	{
 		this.titel.add( "Bauer" );
-		
-		
-		
-		
+		this.titel.add( "Graf" );
+		this.titel.add( "Baron" );
+		this.titel.add( "Lord" );
+		this.titel.add( "Fuerst" );
+		this.titel.add( "Prinz" );		
 		this.titel.add( "Koenig" );
 	}
 	
