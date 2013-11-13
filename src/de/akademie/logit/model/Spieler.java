@@ -8,14 +8,14 @@ public class Spieler
 {
 	private String name;
 	private Titel titel;
-	private int gold;
+	private int gold=100;
 	private ArrayList<Land> laendereien;
 	private int soldaten;
 	private int steuersatz;
 	private int mehl;
 	private int korn;
 	private int duenger;
-	private int essensration;
+	private int essensration=2;
 	private int bevoelkerungszahl=50;
 	private Marktplatz marktplatz;
 	private EreignisController ereignis;
@@ -171,4 +171,45 @@ public class Spieler
 	public boolean isSabotageOpfer() {
 		return false;
 	}
+	
+	public int ermittleGoldBetrag(int inProzent) {
+		return 0;
+	}
+	
+	
+	public int getBevoelkerungsanzahl() {
+		return 0;
+	}
+	
+	
+	public void setBevoelkerungsanzahl(int bevoelkerungsanzahl) {
+		
+	}
+	
+	public void steuernEintreiben() {
+		
+	}
+	
+	
+	public void soldatenVersorgen(int sold) {
+		
+	}
+	
+	
+	public void bevoelkerungFuettern() {
+		
+	}
+	
+	
+	public void kornErntenUndVerteilen() {
+		
+	}
+	
+	
+	public void zufriedenheitErmitteln() {
+		
+	}
+	
+	
+	
 }
