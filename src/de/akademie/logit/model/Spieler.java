@@ -2,7 +2,7 @@ package de.akademie.logit.model;
 
 import java.util.ArrayList;
 
-import de.akademie.logit.controller.Ereignis;
+import de.akademie.logit.controller.EreignisController;
 
 public class Spieler
 {
@@ -18,7 +18,7 @@ public class Spieler
 	private int essensration;
 	private int bevoelkerungszahl=50;
 	private Marktplatz marktplatz;
-	private Ereignis ereignis;
+	private EreignisController ereignis;
 	private boolean sabotageflag=true;
 	private boolean sabotageOpfer=false;
 	private int bevoelkerungszufriedenheit=0;
