@@ -4,6 +4,11 @@ import de.akademie.logit.model.Marktplatz;
 import de.akademie.logit.model.Spieler;
 import de.akademie.logit.view.Anzeige;
 
+/**
+ * 
+ * @author paul
+ *
+ */
 public class SabotageaktController
 {
 

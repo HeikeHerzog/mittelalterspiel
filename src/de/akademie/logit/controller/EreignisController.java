@@ -2,6 +2,11 @@ package de.akademie.logit.controller;
 
 import de.akademie.logit.model.Spieler;
 
+/**
+ * 
+ * @author paul
+ *
+ */
 public class EreignisController
 {
 
