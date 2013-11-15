@@ -46,7 +46,7 @@ public class Marktplatz
 	
 	
 	public Spieler ermittleStartSpieler() {
-		return null;
+		return startSpieler;
 	}
 	
 	
@@ -78,9 +78,9 @@ public class Marktplatz
 		else return false;
 	}
 	
-	
+	//15.11.2013
 	public void fuegeSpielerLandHinzu(Spieler aktiverSpieler, Land land) {
-		
+		aktiverSpieler.getLandListe().add(land);
 	}
 	
 	public boolean zerstoereGebaeude(int auswahl) {
@@ -141,8 +141,14 @@ public class Marktplatz
 	
 	
 	public boolean handelswareKaufen(int auswahl, int menge, int gold) {
+			
+
 		return false;
 	}
+		
+			
+		
+		
 	
 	public boolean handelswareVerkaufen(int auswahl, int menge, int gold) {
 		return false;
