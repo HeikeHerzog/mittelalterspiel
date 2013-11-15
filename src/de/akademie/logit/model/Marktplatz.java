@@ -74,14 +74,35 @@ public class Marktplatz
 		aktiverSpieler.getLandListe().add(land);
 	}
 	
+	
+	//15.11.2013
 	public boolean zerstoereGebaeude(int auswahl) {
+		boolean gefunden=false;
+		switch (auswahl) {
+		case 1:			// Feld zerstören
+			
+				
+				
+			
+		case 2:			// Mühle zerstören
+			
+		case 3: 		// Kornkammer zerstören
+			
+		case 0: 		// Abbruch
+			break;
+		
+		default:
+			break;
+		
+		}
+				
 		return false;
 	}
 	
 // 15.11.2013	
 	public boolean kaufeGebaeude(int auswahl, int gold, Land freiesLand) {
 		switch (auswahl) {
-			case 0:		// kein Kauf -> zur�ck zum Geb�ude bearbeiten
+			case 0:		// kein Kauf -> zurück zum Gebäude bearbeiten
 				break;	
 			case 1: 	// Feld kaufen
 				if (gold >= preisGebaeude) {
@@ -210,7 +231,7 @@ public class Marktplatz
 	
 	
 	public void preiseAnpassen() {
-		
+		//Preise für Korn und Mehl werden im Verhältnis Anfangsbestand : Endbestand ermittelt
 	}
 	
 	
