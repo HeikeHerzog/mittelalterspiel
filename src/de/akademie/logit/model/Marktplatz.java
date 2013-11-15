@@ -23,6 +23,7 @@ public class Marktplatz
 	private int mengeMehlEnde;
 	private int preisDuenger;
 	private int preisGebaeude = 10;
+	private int preisLand = 20;
 	
 	
 	public Marktplatz() {
@@ -63,13 +64,22 @@ public class Marktplatz
 		
 	}
 	
-	
+// 15.11.2013	
 	public boolean kaufeLand(int menge, int gold) {
-		return false;
+		int gesPreis = menge*preisLand;
+		if (gesPreis <= gold) { //gold reicht aus um die Anzahl an Land zu erwerben
+			for (int i=0; i<menge; i++) {
+				Land neuesLand = new Land();
+				this.aktiverSpieler.saldiereGold(gesPreis);
+				fuegeSpielerLandHinzu(aktiverSpieler, neuesLand);
+			}
+			return true;
+		}
+		else return false;
 	}
 	
 	
-	public void fuegeSpielerHinzu(Spieler aktiverSpieler, Land land) {
+	public void fuegeSpielerLandHinzu(Spieler aktiverSpieler, Land land) {
 		
 	}
 	
@@ -79,7 +89,6 @@ public class Marktplatz
 	
 // 15.11.2013	
 	public boolean kaufeGebaeude(int auswahl, int gold, Land freiesLand) {
-		
 		switch (auswahl) {
 			case 0:		// kein Kauf -> zurück zum Gebäude bearbeiten
 				break;	
