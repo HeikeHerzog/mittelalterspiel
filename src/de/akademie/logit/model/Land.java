@@ -2,7 +2,6 @@ package de.akademie.logit.model;
 
 public class Land {
 
-	private int wert;
 	private Gebaeude gebaeude;
 	
 	public Land() {
@@ -13,5 +12,8 @@ public class Land {
 		return gebaeude;
 	}
 	
+	public void setGebaeude (Gebaeude _gebaeude) {
+		this.gebaeude = _gebaeude;
+	}
 	
 }

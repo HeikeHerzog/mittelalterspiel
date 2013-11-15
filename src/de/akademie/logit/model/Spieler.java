@@ -21,6 +21,7 @@ public class Spieler
 	private EreignisController ereignis;
 	private boolean sabotageflag=true;
 	private boolean sabotageOpfer=false;
+	private boolean titelflag=false;
 	private int bevoelkerungszufriedenheit=0;
 	
 	
@@ -179,6 +180,14 @@ public class Spieler
 	}
 	
 	
+	public int ermittleKornMenge(int inProzent) {
+		return 0;
+	}
+	
+	public int ermittleSoldatenAnzahl(int inProzent) {
+		return 0;
+	}
+	
 	public int getBevoelkerungsanzahl() {
 		return this.bevoelkerungsanzahl;
 	}
@@ -200,6 +209,9 @@ public class Spieler
 	
 	public void bevoelkerungFuettern() {
 		
+		
+		
+		
 	}
 	
 	
@@ -210,6 +222,14 @@ public class Spieler
 	
 	public void zufriedenheitAnpassen() {
 		
+	}
+	
+	public void setTitelflag (boolean _titelflag) {
+		this.titelflag = _titelflag;
+	}
+	
+	public boolean getTitelflag () {
+		return titelflag;
 	}
 	
 	
