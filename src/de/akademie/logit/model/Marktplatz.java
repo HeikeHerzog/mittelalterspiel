@@ -15,13 +15,13 @@ public class Marktplatz
 	private int soldatenSold=3;
 	private static int rundenzaehler;
 	private HashMap<Integer, Spieler>opfermap;
-	private int preisKorn;
+	private int preisKorn = 1;
 	private int mengeKornAnfang;
 	private int mengeKornEnde;
-	private int preisMehl;
+	private int preisMehl = 2;
 	private int mengeMehlAnfang;
 	private int mengeMehlEnde;
-	private int preisDuenger;
+	private int preisDuenger = 1;
 	private int preisGebaeude = 10;
 	private int preisLand = 20;
 	
@@ -30,16 +30,7 @@ public class Marktplatz
 		
 	}
 	
-	public void erzeugeMenus() {
 		
-	}
-	
-	
-	public void erzeugeInfobereich() {
-		
-	}
-	
-	
 	public void fuegeSpielerHinzu(Spieler _spieler) {
 		this.spieler.add(_spieler);
 	}
@@ -90,7 +81,7 @@ public class Marktplatz
 // 15.11.2013	
 	public boolean kaufeGebaeude(int auswahl, int gold, Land freiesLand) {
 		switch (auswahl) {
-			case 0:		// kein Kauf -> zurück zum Gebäude bearbeiten
+			case 0:		// kein Kauf -> zurï¿½ck zum Gebï¿½ude bearbeiten
 				break;	
 			case 1: 	// Feld kaufen
 				if (gold >= preisGebaeude) {
@@ -129,7 +120,7 @@ public class Marktplatz
 // 15.11.2013	
 	public boolean kaufeSoldaten(int anzahl, int gold) {
 		if (gold < soldatenPreis) {
-			return false;			// Gold reicht nicht -> zurück zu Soldaten bearbeiten
+			return false;			// Gold reicht nicht -> zurï¿½ck zu Soldaten bearbeiten
 		}
 		else {
 			this.aktiverSpieler.saldiereSoldaten(anzahl);
@@ -139,11 +130,43 @@ public class Marktplatz
 		
 	}
 	
-	
+	//15.11.2013
 	public boolean handelswareKaufen(int auswahl, int menge, int gold) {
-			
+			if (auswahl == 0 || menge == 0) {
+				return false;
+			} else {
+				switch (auswahl) {
+				case 1: 	//Korn kaufen
+					if (gold >= (menge*this.preisKorn)) {
+						this.aktiverSpieler.saldiereHandelsware(auswahl, menge);
+						this.aktiverSpieler.saldiereGold(menge*this.preisKorn);
+						saldiereHandelsware(auswahl, menge);
+						return true;
+					}
+					break;
+				case 2: 	//Mehl kaufen 
+					if (gold >= (menge*this.preisMehl)) {
+						this.aktiverSpieler.saldiereHandelsware(auswahl, menge);
+						this.aktiverSpieler.saldiereGold(menge*this.preisMehl);
+						saldiereHandelsware(auswahl, menge);
+						return true;
+					}
+					break;
+				case 3: 	// DÃ¼nger kaufen
+					if (gold >= (menge*this.preisDuenger)) {
+						this.aktiverSpieler.saldiereHandelsware(auswahl, menge);
+						this.aktiverSpieler.saldiereGold(menge*this.preisDuenger);
+						return true;
+					}
+					break;
+				default:
+					break;
+				}
+					
+				return false;
+			}
 
-		return false;
+		
 	}
 		
 			
