@@ -120,7 +120,7 @@ public class Marktplatz
 // 15.11.2013	
 	public boolean kaufeSoldaten(int anzahl, int gold) {
 		if (gold < soldatenPreis) {
-			return false;			// Gold reicht nicht -> zur�ck zu Soldaten bearbeiten
+			return false;			// Gold reicht nicht -> zurück zu Soldaten bearbeiten
 		}
 		else {
 			this.aktiverSpieler.saldiereSoldaten(anzahl);
@@ -169,13 +169,32 @@ public class Marktplatz
 		
 	}
 		
-			
 		
-		
-	
+//15.11.2013	
 	public boolean handelswareVerkaufen(int auswahl, int menge, int gold) {
+		if (auswahl == 0 || menge == 0)  {
+			return false;		// Abbruch
+		}
+		else if (auswahl == 1) { 	// Korn verkaufen
+			if (this.aktiverSpieler.getKorn() >= menge) {
+				aktiverSpieler.saldiereHandelsware(auswahl, menge);
+				aktiverSpieler.saldiereGold(menge*preisKorn);
+				saldiereHandelsware(auswahl, menge);
+				return true;
+			} else return false;
+		} else if (auswahl == 2) {
+			if (this.aktiverSpieler.getMehl() >= menge) {
+				aktiverSpieler.saldiereHandelsware(auswahl, menge);
+				aktiverSpieler.saldiereGold(menge*preisMehl);
+				saldiereHandelsware(auswahl, menge);
+				return true;
+			} else return false;
+		}
+		
 		return false;
-	}
+		}
+
+	
 	
 	public void saldiereHandelsware(int auswahl, int menge) {
 		
