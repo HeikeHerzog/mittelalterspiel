@@ -1,7 +1,15 @@
 package de.akademie.logit.view;
 
+import de.akademie.logit.model.Spieler;
+
+/**
+ * 
+ * @author paul
+ * 
+ */
 public class Anzeige
 {
+
 	private Anzeige()
 	{}
 
@@ -10,14 +18,13 @@ public class Anzeige
 		System.out.println( text );
 	}
 
-	public static void zeigeMenuAn( Menu menu )
+	public static void zeigeMenuAn( Spieler spieler, Menu menu )
 	{
+		System.out.println( "Spielerinfo" );
+		System.out.println( "===========" );
+		new Infobereich( spieler ).anzeigenInfo();
+		System.out.println();
 		menu.printText();
-	}
-
-	public static void zeigeInfobereich(Infobereich infobereich)
-	{
-
 	}
 
 }
