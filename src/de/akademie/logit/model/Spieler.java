@@ -9,14 +9,14 @@ public class Spieler
 	private String name;
 	private Titel titel;
 	private int gold=100;
-	private ArrayList<Land> laendereien;
+	private ArrayList<Land> laendereien = new ArrayList<Land>();
 	private int soldaten;
 	private int steuersatz;
 	private int mehl;
 	private int korn;
 	private int duenger;
 	private int essensration=2;
-	private int bevoelkerungszahl=50;
+	private int bevoelkerungsanzahl=50;
 	private Marktplatz marktplatz;
 	private EreignisController ereignis;
 	private boolean sabotageflag=true;
@@ -50,12 +50,12 @@ public class Spieler
 	
 	
 	public int getGold() {
-		return 0;
+		return gold;
 	}
 	
 	
 	public int getSoldaten() {
-		return 0;
+		return soldaten;
 	}
 	
 	
@@ -65,7 +65,7 @@ public class Spieler
 	
 	
 	public ArrayList<Land> getLandListe() {
-		return null;
+		return laendereien;
 	}
 	
 	
@@ -98,13 +98,13 @@ public class Spieler
 	
 	
 	public int getKorn() {
-		return 0;
+		return korn;
 	}
 	
 	
 	
 	public int getMehl() {
-		return 0;
+		return mehl;
 	}
 	
 	
@@ -113,8 +113,9 @@ public class Spieler
 	}
 	
 	
-	public void setSabotage(boolean sabotageFlag) {
-		
+	
+	public void setSabotage(boolean _sabotageflag) {
+		sabotageflag = _sabotageflag;
 	}
 	
 	
@@ -124,17 +125,17 @@ public class Spieler
 	
 	
 	public int getSteuersatz() {
-		return 0;
+		return steuersatz;
 	}
 	
 	
-	public void setSteuersatz(int steuersatz) {
-		
+	public void setSteuersatz(int _steuersatz) {
+		steuersatz = _steuersatz;
 	}
 	
 	
 	public Titel getTitel() {
-		return null;
+		return titel;
 	}
 	
 	
@@ -149,27 +150,27 @@ public class Spieler
 
 	
 	public int getEssensration() {
-		return 0;
+		return essensration;
 	}
 	
 	
 	public void setMehl(int menge) {
-		
+		mehl = menge;
 	}
 
 	
 	public void setKorn(int menge) {
-		
+		korn = menge;
 	}
 
 
-	public void setSabotageOpfer(boolean sabotageOpfer) {
+	public void setSabotageOpfer(boolean _sabotageOpfer) {
 		
 	}
 	
 	
 	public boolean isSabotageOpfer() {
-		return false;
+		return sabotageOpfer;
 	}
 	
 	public int ermittleGoldBetrag(int inProzent) {
@@ -178,12 +179,12 @@ public class Spieler
 	
 	
 	public int getBevoelkerungsanzahl() {
-		return 0;
+		return bevoelkerungsanzahl;
 	}
 	
 	
-	public void setBevoelkerungsanzahl(int bevoelkerungsanzahl) {
-		
+	public void setBevoelkerungsanzahl(int _bevoelkerungsanzahl) {
+		bevoelkerungsanzahl = _bevoelkerungsanzahl;
 	}
 	
 	public void steuernEintreiben() {

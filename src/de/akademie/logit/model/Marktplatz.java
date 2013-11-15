@@ -3,11 +3,6 @@ package de.akademie.logit.model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * 
- * @author Jutta
- *
- */
 
 public class Marktplatz
 {
@@ -43,22 +38,23 @@ public class Marktplatz
 	}
 	
 	
-	public void fuegeSpielerHinzu(Spieler spieler) {
-		
+	public void fuegeSpielerHinzu(Spieler _spieler) {
+		this.spieler.add(_spieler);
 	}
+	
 	
 	public Spieler ermittleStartSpieler() {
 		return null;
 	}
 	
 	
-	public void setAktivenSpieler(Spieler spieler) {
-		
+	public void setAktivenSpieler(Spieler _spieler) {
+		aktiverSpieler = _spieler;
 	}
 	
 	
 	public Spieler getAktivenSpieler() {
-		return null;
+		return aktiverSpieler;
 	}
 	
 	

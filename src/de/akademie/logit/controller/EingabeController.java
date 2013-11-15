@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import de.akademie.logit.model.Marktplatz;
 import de.akademie.logit.view.Anzeige;
 
+
 /**
  * 
  * @author paul
@@ -26,7 +27,7 @@ public class EingabeController
 
 	public void initialisieren()
 	{
-
+		
 	}
 
 	public void loop()
