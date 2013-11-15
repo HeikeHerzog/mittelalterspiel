@@ -81,7 +81,7 @@ public class Marktplatz
 	public boolean kaufeGebaeude(int auswahl, int gold, Land freiesLand) {
 		
 		switch (auswahl) {
-			case 0:		// kein Kauf -> zurück zum Gebaeude bearbeiten
+			case 0:		// kein Kauf -> zurück zum Gebäude bearbeiten
 				break;	
 			case 1: 	// Feld kaufen
 				if (gold >= preisGebaeude) {
@@ -117,9 +117,17 @@ public class Marktplatz
 		
 	}
 	
-	
+// 15.11.2013	
 	public boolean kaufeSoldaten(int anzahl, int gold) {
-		return false;
+		if (gold < soldatenPreis) {
+			return false;			// Gold reicht nicht -> zurück zu Soldaten bearbeiten
+		}
+		else {
+			this.aktiverSpieler.saldiereSoldaten(anzahl);
+			this.aktiverSpieler.saldiereGold(gold);
+			return true;
+		}
+		
 	}
 	
 	
