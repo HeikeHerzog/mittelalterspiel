@@ -22,6 +22,7 @@ public class Marktplatz
 	private int mengeMehlAnfang;
 	private int mengeMehlEnde;
 	private int preisDuenger;
+	private int preisGebaeude = 10;
 	
 	
 	public Marktplatz() {
@@ -49,12 +50,12 @@ public class Marktplatz
 	
 	
 	public void setAktivenSpieler(Spieler _spieler) {
-		aktiverSpieler = _spieler;
+		this.aktiverSpieler = _spieler;
 	}
 	
 	
 	public Spieler getAktivenSpieler() {
-		return aktiverSpieler;
+		return this.aktiverSpieler;
 	}
 	
 	
@@ -76,9 +77,44 @@ public class Marktplatz
 		return false;
 	}
 	
-	
+// 15.11.2013	
 	public boolean kaufeGebaeude(int auswahl, int gold, Land freiesLand) {
+		
+		switch (auswahl) {
+			case 0:		// kein Kauf -> zurück zum Gebaeude bearbeiten
+				break;	
+			case 1: 	// Feld kaufen
+				if (gold >= preisGebaeude) {
+					Feld neuesFeld = new Feld();
+					this.aktiverSpieler.besetzeLandMitGebaeude(neuesFeld, freiesLand);
+					this.aktiverSpieler.saldiereGold(preisGebaeude);
+					return true;
+				} 
+				break;
+			case 2: 	//Muehle kaufen
+				if (gold >= preisGebaeude) {
+					Muehle neueMuehle = new Muehle();
+					this.aktiverSpieler.besetzeLandMitGebaeude(neueMuehle, freiesLand);
+					this.aktiverSpieler.saldiereGold(preisGebaeude);
+					return true;
+				} 
+				break;
+				
+			case 3: 	//Kornkammer kaufen
+				if (gold >= preisGebaeude) {
+					Kornkammer neueKornkammer = new Kornkammer();
+					this.aktiverSpieler.besetzeLandMitGebaeude(neueKornkammer, freiesLand);
+					this.aktiverSpieler.saldiereGold(preisGebaeude);
+					return true;
+				} 
+				break;
+		
+			default:
+				break;
+		}
+				
 		return false;
+		
 	}
 	
 	
@@ -104,7 +140,7 @@ public class Marktplatz
 	}
 	
 	public int getSold() {
-		return soldatenSold;
+		return this.soldatenSold;
 	}
 	
 	

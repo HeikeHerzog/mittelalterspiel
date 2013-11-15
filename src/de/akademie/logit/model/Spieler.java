@@ -50,12 +50,13 @@ public class Spieler
 	
 	
 	public int getGold() {
-		return gold;
+		return this.gold;
 	}
 	
 	
+	
 	public int getSoldaten() {
-		return soldaten;
+		return this.soldaten;
 	}
 	
 	
@@ -65,7 +66,7 @@ public class Spieler
 	
 	
 	public ArrayList<Land> getLandListe() {
-		return laendereien;
+		return this.laendereien;
 	}
 	
 	
@@ -98,13 +99,13 @@ public class Spieler
 	
 	
 	public int getKorn() {
-		return korn;
+		return this.korn;
 	}
 	
 	
 	
 	public int getMehl() {
-		return mehl;
+		return this.mehl;
 	}
 	
 	
@@ -115,7 +116,7 @@ public class Spieler
 	
 	
 	public void setSabotage(boolean _sabotageflag) {
-		sabotageflag = _sabotageflag;
+		this.sabotageflag = _sabotageflag;
 	}
 	
 	
@@ -125,17 +126,17 @@ public class Spieler
 	
 	
 	public int getSteuersatz() {
-		return steuersatz;
+		return this.steuersatz;
 	}
 	
 	
 	public void setSteuersatz(int _steuersatz) {
-		steuersatz = _steuersatz;
+		this.steuersatz = _steuersatz;
 	}
 	
 	
 	public Titel getTitel() {
-		return titel;
+		return this.titel;
 	}
 	
 	
@@ -150,17 +151,17 @@ public class Spieler
 
 	
 	public int getEssensration() {
-		return essensration;
+		return this.essensration;
 	}
 	
 	
 	public void setMehl(int menge) {
-		mehl = menge;
+		this.mehl = menge;
 	}
 
 	
 	public void setKorn(int menge) {
-		korn = menge;
+		this.korn = menge;
 	}
 
 
@@ -170,7 +171,7 @@ public class Spieler
 	
 	
 	public boolean isSabotageOpfer() {
-		return sabotageOpfer;
+		return this.sabotageOpfer;
 	}
 	
 	public int ermittleGoldBetrag(int inProzent) {
@@ -179,12 +180,12 @@ public class Spieler
 	
 	
 	public int getBevoelkerungsanzahl() {
-		return bevoelkerungsanzahl;
+		return this.bevoelkerungsanzahl;
 	}
 	
 	
 	public void setBevoelkerungsanzahl(int _bevoelkerungsanzahl) {
-		bevoelkerungsanzahl = _bevoelkerungsanzahl;
+		this.bevoelkerungsanzahl = _bevoelkerungsanzahl;
 	}
 	
 	public void steuernEintreiben() {
@@ -207,7 +208,7 @@ public class Spieler
 	}
 	
 	
-	public void zufriedenheitErmitteln() {
+	public void zufriedenheitAnpassen() {
 		
 	}
 	

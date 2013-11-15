@@ -10,7 +10,7 @@ public class Land {
 	}
 	
 	public Gebaeude getGebaeude() {
-		return null;
+		return gebaeude;
 	}
 	
 	
