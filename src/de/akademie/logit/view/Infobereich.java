@@ -7,16 +7,15 @@ public class Infobereich
 
 	private String text;
 	private Spieler spieler;
-	
-	
-	public Infobereich(Spieler _spieler) {
-		this.spieler = _spieler;
+
+	public Infobereich( Spieler spieler )
+	{
+		this.spieler = spieler;
 	}
-	
-	
-	public void anzeigeIndo() {
-		
+
+	public void anzeigenInfo()
+	{
+
 	}
-	
-	
+
 }

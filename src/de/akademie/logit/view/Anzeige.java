@@ -2,28 +2,22 @@ package de.akademie.logit.view;
 
 public class Anzeige
 {
+	private Anzeige()
+	{}
 
-	private Menu menu;
-	private Infobereich infobereich;
-	
-	public Anzeige() {
+	public static void zeigeStringAn( String text )
+	{
+		System.out.println( text );
+	}
+
+	public static void zeigeMenuAn( Menu menu )
+	{
+		menu.printText();
+	}
+
+	public static void zeigeInfobereich(Infobereich infobereich)
+	{
 
 	}
-	
-	public void zeigeStringAn (String string) {
-		System.out.println(string);
-	}
-	
-	
-	public void zeigeMenuAn (Menu menu) {
-		
-	}
-	
-	
-	public void zeigeInfobereich() {
-		
-	}
-	
-	
-	
+
 }
