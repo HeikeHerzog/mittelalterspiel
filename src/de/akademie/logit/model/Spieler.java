@@ -34,19 +34,18 @@ public class Spieler
 		this.name = _name;
 	}
 	
+	public String getName() {
+		return this.name;
+	}
 	
-	public boolean titelErwerben(Titel aktuellerTitel, int gold, ArrayList<Land> laendereienen) {
+	
+	public boolean titelErwerben(Titel aktuellerTitel, int gold, ArrayList<Land> laendereien) {
 		return false;
 	}
 	
 	
 	public void spielzugBeenden() {
 		
-	}
-	
-	
-	public boolean landKaufen(int menge) {
-		return false;
 	}
 	
 	
@@ -145,8 +144,24 @@ public class Spieler
 		
 	}
 
-
+	
+	/* Essensrationen können halb, voll oder doppelt sein.
+	 * Eine volle Essensration sind 2 Einheiten Mehl.
+	 * Eine halbe Essensration ist 1 Einheit Mehl.
+	 * Eine doppelte Essensration sind 4 Einheiten Mehl.
+	 * Soldaten bekommen immer die volle Essensration, also 2 Einheiten Mehl
+	 */
 	public void setEssensration(int rationssatz) {
+		
+		if( rationssatz == 1) {
+			this.essensration = 1;
+		}
+		else if (rationssatz == 2) {
+			this.essensration = 2;
+		}
+		else if (rationssatz == 3 ) {
+			this.essensration = 4;
+		}
 		
 	}
 
@@ -199,6 +214,8 @@ public class Spieler
 	
 	public void steuernEintreiben() {
 		
+		this.gold = (this.gold*this.steuersatz/100)+this.gold;
+		
 	}
 	
 	
@@ -208,6 +225,22 @@ public class Spieler
 	
 	
 	public void bevoelkerungFuettern() {
+		
+		int benötigtesMehl = this.bevoelkerungsanzahl * this.essensration;
+		
+		if (benötigtesMehl < this.mehl) {
+			
+			int satteBevoelkerung = Integer.valueOf(Math.round(this.mehl/this.essensration));
+			int hungrigeBevoelkerung = this.bevoelkerungsanzahl - satteBevoelkerung;
+			
+			this.mehl = 0;
+			
+		}
+		
+		
+		
+		
+		
 		
 		
 		
@@ -230,6 +263,14 @@ public class Spieler
 	
 	public boolean getTitelflag () {
 		return titelflag;
+	}
+	
+	public int getDuenger() {
+		return this.duenger;
+	}
+	
+	public int getBevoelkerungszufriedenheit() {
+		return this.bevoelkerungszufriedenheit;
 	}
 	
 	
