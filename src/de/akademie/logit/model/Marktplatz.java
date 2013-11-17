@@ -80,8 +80,7 @@ public class Marktplatz
 		boolean gefunden=false;
 		switch (auswahl) {
 		case 1:			// Feld zerstören
-			
-				
+			aktiverSpieler.getLandListe();		
 				
 			
 		case 2:			// Mühle zerstören
@@ -186,8 +185,6 @@ public class Marktplatz
 					
 				return false;
 			}
-
-		
 	}
 		
 		
@@ -203,7 +200,7 @@ public class Marktplatz
 				saldiereHandelsware(auswahl, menge);
 				return true;
 			} else return false;
-		} else if (auswahl == 2) {
+		} else if (auswahl == 2) {	// Mehl verkaufen
 			if (this.aktiverSpieler.getMehl() >= menge) {
 				aktiverSpieler.saldiereHandelsware(auswahl, menge);
 				aktiverSpieler.saldiereGold(menge*preisMehl);
@@ -218,6 +215,16 @@ public class Marktplatz
 	
 	
 	public void saldiereHandelsware(int auswahl, int menge) {
+		
+		switch (auswahl) {
+			case 1:		// Korn 
+		
+			case 2: 	// Mehl
+				
+			case 3: 	// Duenger
+		
+		}
+		
 		
 	}
 	
@@ -236,7 +243,13 @@ public class Marktplatz
 	
 	
 	public void incRundenzaehler() {
+		rundenzaehler += 1;
 		
+	}
+	
+	// am Montag klären...
+	public int getRundenzaehler() {
+		return rundenzaehler;
 	}
 	
 }
