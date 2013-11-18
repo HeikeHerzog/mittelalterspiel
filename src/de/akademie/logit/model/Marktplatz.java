@@ -225,20 +225,34 @@ public class Marktplatz
 	}
 	
 	
+	//Preise für Korn und Mehl werden im Verhältnis Anfangsbestand : Endbestand ermittelt
 	public void preiseAnpassen() {
-		int unterschied = mengeMehlEnde - mengeMehlAnfang;
+				
+		int unterschiedMehl = mengeMehlEnde - mengeMehlAnfang;
+		int unterschiedKorn = mengeKornEnde - mengeKornAnfang;
 		
-		//Preise für Korn und Mehl werden im Verhältnis Anfangsbestand : Endbestand ermittelt
-		
-		// wenn der Mehlendbestand sich um min. 50% des Anfangsbestandes erhöht hat wird das Mehl billiger
-		if (unterschied >= ((int)(mengeMehlAnfang/2)) && (preisMehl > 1)) { 
+				
+		// wenn der Mehlendbestand sich um min. 50% des Anfangsbestandes erhöht hat wird das Mehl ggf. billiger
+		if (unterschiedMehl >= ((int)(mengeMehlAnfang/2)) && (preisMehl > 1)) { 
 			preisMehl = (int)(preisMehl/2);
 		}
 		// wenn der Mehlendbestand kleiner als der Mehlanfangsbestand ist wird das Mehl ggf. teurer
 		// dafür muss sich der Mehlbestand um die hälfte des Anfangsbestandes verringert haben
-		if ( (unterschied < 0) && ( (unterschied*-1) >= ((int)(mengeMehlAnfang/2)) )) {
+		else if ( (unterschiedMehl < 0) && ( (unterschiedMehl*-1) >= ((int)(mengeMehlAnfang/2)) )) {
 			preisMehl += (int)(preisMehl/2);	
 		}		
+		
+		
+		// wenn der Kornbestand sich um min. 50% des Anfangsbestandes erhöht hat wird das Korn ggf. billiger
+		if (unterschiedKorn >= ((int)(mengeKornAnfang/2)) && (preisKorn > 1)) { 
+			preisKorn = (int)(preisKorn/2);
+		}
+		// wenn der Kornendbestand kleiner als der Kornanfangsbestand ist wird das Korn ggf. teurer
+		// dafür muss sich der Kornbestand um die hälfte des Anfangsbestandes verringert haben
+		else if ( (unterschiedKorn < 0) && ( (unterschiedKorn*-1) >= ((int)(mengeKornAnfang/2)) )) {
+			preisKorn += (int)(preisKorn/2);	
+		}
+				
 	}
 	
 	
