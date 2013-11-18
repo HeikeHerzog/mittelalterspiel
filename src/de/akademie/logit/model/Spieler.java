@@ -128,6 +128,8 @@ public class Spieler
 	
 	public void besetzeLandMitGebaeude(Gebaeude gebaeude, Land freiesLand) {
 		
+		
+		freiesLand.setGebaeude(gebaeude);
 	}
 	
 	
