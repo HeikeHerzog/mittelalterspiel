@@ -81,6 +81,7 @@ public class Spieler
 	
 	public void saldiereGold(int menge) {
 		
+		this.gold = this.gold + menge;
 	}
 	
 	
@@ -105,10 +106,24 @@ public class Spieler
 
 		return "Gebäude pro " + new Land().getBezeichnung() + ":    " + besitz;
 	}
+	
+	
 
 	public Land findeFreiesLand() {
+		
+		for (int i =0; i< laendereien.size(); i++)
+		{	
+						
+			if (laendereien.get(i).getGebaeude()==null) {
+				
+				return laendereien.get(i);
+			}
+		}
+		
+		
 		return null;
 	}
+	
 	
 	
 	public void besetzeLandMitGebaeude(Gebaeude gebaeude, Land freiesLand) {
