@@ -101,7 +101,7 @@ public class Spieler
 
 		for (Land land : this.laendereien)
 		{
-			besitz = besitz + land.getGebaeude().getBezeichnung() + " ";
+			besitz = besitz + ( land.getGebaeude() == null ? "ohne" : land.getGebaeude().getBezeichnung() ) + " ";
 		}
 
 		return "Gebäude pro " + new Land().getBezeichnung() + ":    " + besitz;
