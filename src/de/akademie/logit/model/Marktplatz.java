@@ -61,11 +61,11 @@ public class Marktplatz
 // 15.11.2013	
 	public boolean kaufeLand(int menge, int gold) {
 		int gesPreis = menge*preisLand;
-		if (gesPreis <= gold) { //gold reicht aus um die Anzahl an Land zu erwerben
+		if (gesPreis <= gold) {     //gold reicht aus um die Anzahl an Land zu erwerben
 			for (int i=0; i<menge; i++) {
 				Land neuesLand = new Land();
 				this.aktiverSpieler.saldiereGold(gesPreis);
-				fuegeSpielerLandHinzu(aktiverSpieler, neuesLand);
+				fuegeSpielerLandHinzu(this.aktiverSpieler, neuesLand);
 			}
 			return true;
 		}
@@ -75,31 +75,20 @@ public class Marktplatz
 	//15.11.2013
 	public void fuegeSpielerLandHinzu(Spieler aktiverSpieler, Land land) {
 		aktiverSpieler.getLandListe().add(land);
-	}
+	}	
 	
 	
-	//15.11.2013
+	//18.11.2013
 	public boolean zerstoereGebaeude(int auswahl) {
-		boolean gefunden=false;
-		switch (auswahl) {
-		case 1:			// Feld zerstören
-			aktiverSpieler.getLandListe();		
-				
-			
-		case 2:			// Mühle zerstören
-			
-		case 3: 		// Kornkammer zerstören
-			
-		case 0: 		// Abbruch
-			break;
+		boolean gefunden = false;
+		gefunden = this.aktiverSpieler.zerstöreGesuchtesGebaeude(auswahl);
 		
-		default:
-			break;
-		
-		}
-				
-		return false;
+		if (gefunden) {
+			return true;
+		} else return false;
 	}
+	
+	
 	
 // 15.11.2013	
 	public boolean kaufeGebaeude(int auswahl, int gold, Land freiesLand) {
@@ -136,9 +125,9 @@ public class Marktplatz
 				break;
 		}
 				
-		return false;
-		
+		return false;	
 	}
+	
 	
 // 15.11.2013	
 	public boolean kaufeSoldaten(int anzahl, int gold) {
@@ -149,9 +138,9 @@ public class Marktplatz
 			this.aktiverSpieler.saldiereSoldaten(anzahl);
 			this.aktiverSpieler.saldiereGold(gold);
 			return true;
-		}
-		
+		}	
 	}
+	
 	
 	//15.11.2013
 	public boolean handelswareKaufen(int auswahl, int menge, int gold) {
@@ -213,25 +202,24 @@ public class Marktplatz
 		}
 		
 		return false;
-		}
+	}
 
 	
 	
 	public void saldiereHandelsware(int auswahl, int menge) {
 		
-		switch (auswahl) {
-			case 1:		// Korn 
-		
-			case 2: 	// Mehl
-				
-			case 3: 	// Duenger
-		
+		if (auswahl == 1) {
+			mengeKornEnde += menge;
 		}
-		
-		
+		else if (auswahl == 2) {
+			mengeMehlEnde += menge;
+		}
+			
 	}
 	
+	
 	public String holeSpielernamen() {
+	
 		return "Hans";
 	}
 	

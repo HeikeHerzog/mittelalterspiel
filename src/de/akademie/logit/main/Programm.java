@@ -20,6 +20,7 @@ public class Programm
 		eingabeController.loop();
 		
 //		Spieler spieler = new Spieler("Paul");
+		//test
 //		spieler.setNextTitel();
 		
 //		Anzeige.zeigeMenuAn( spieler, Spielerhauptmenumaske.getInstance() );

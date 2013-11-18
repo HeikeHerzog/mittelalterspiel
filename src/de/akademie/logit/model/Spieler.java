@@ -116,7 +116,7 @@ public class Spieler
 	}
 	
 	
-	public boolean findeGesuchtesGebaeude(int auswahl) {
+	public boolean zerstöreGesuchtesGebaeude(int auswahl) {
 		return false;
 	}
 	
@@ -257,11 +257,48 @@ public class Spieler
 	}
 	
 	
+	/* Wenn Soldaten nicht genug zu essen haben oder nicht bezahlt werden können,
+	 * wandert die "unterversorgte" Anzahl von Soldaten ab
+	 * 	 */
 	public void soldatenVersorgen(int sold) {
 		
+		int benötigtesMehl = this.soldaten * 2;  //Soldaten bekommen immer die volle Essensration von 2 Mehleinheiten
+		int benötigtesGold = this.soldaten * sold;
+		
+		int satteSoldaten = Integer.valueOf(Math.round(this.mehl/2));
+		int hungrigeSoldaten = this.soldaten - satteSoldaten;
+		
+		int bezahlteSoldaten = Integer.valueOf(Math.round(this.gold/sold));
+		int unbezahlteSoldaten = this.soldaten - bezahlteSoldaten;
+		
+		
+		
+		if ((benötigtesMehl > this.mehl) || (benötigtesGold > this.gold)) {
+			
+			if (hungrigeSoldaten > unbezahlteSoldaten) {
+				
+				this.soldaten = this.soldaten - hungrigeSoldaten;
+				this.mehl = 0;
+				this.gold = this.gold - benötigtesGold;
+			}
+			else if (hungrigeSoldaten <= unbezahlteSoldaten) {
+				this.soldaten = this.soldaten - unbezahlteSoldaten;
+				this.mehl = this.mehl - benötigtesMehl;
+				this.gold = 0;
+			}
+								
+		}
+		else if ((benötigtesMehl <= this.mehl) && (benötigtesGold <= this.gold)) {
+			
+			this.mehl = this.mehl - benötigtesMehl;
+			this.gold = this.gold - benötigtesGold;
+			
+		}
 	}
 	
-	
+	/* Wenn die Bevölkerung nicht genug zu essen hat,
+	 * wandern die hungrigen Bewohner ab
+	 * 	 */
 	public void bevoelkerungFuettern() {
 		
 		int benötigtesMehl = this.bevoelkerungsanzahl * this.essensration;
@@ -269,16 +306,54 @@ public class Spieler
 		if (benötigtesMehl < this.mehl) {
 			
 			int satteBevoelkerung = Integer.valueOf(Math.round(this.mehl/this.essensration));
-			int hungrigeBevoelkerung = this.bevoelkerungsanzahl - satteBevoelkerung;
-			
-			this.mehl = 0;
-			
+			this.bevoelkerungsanzahl = this.bevoelkerungsanzahl - (this.bevoelkerungsanzahl - satteBevoelkerung);
+						
 		}
-
+		this.mehl = 0; // Mehl wird bei Spielzug beenden immer auf 0 gesetzt, da übriges Mehl verdirbt
+		
+	}
+	
+	public int zaehleGebaeude(int auswahl) {
+		int anzahl = 0;
+		
+		for (int i = 0; i < this.laendereien.size(); i++) {
+			switch (auswahl) {
+			
+			case 1: 	// Felder zaehlen
+				if (this.laendereien.get(i).getBezeichnung() == "Feld") {
+					anzahl++;
+				}
+				break;
+				
+			case 2: 	//Muehlen zaehlen
+				if (this.laendereien.get(i).getBezeichnung() == "Mühle") {
+					anzahl++;
+				}
+				break;
+				
+			case 3: 	//Kornkammern zaehlen
+				
+					
+				} 
+				break;
+		
+			default:
+				break;
+		}
+				
+		return false;
+		
 	}
 	
 	
 	public void kornErntenUndVerteilen() {
+		
+		int anzahlFelder = this.laendereien.size();
+		
+		for (Land land : this.laendereien)
+		{
+			besitz = besitz + land.getGebaeude().getBezeichnung() + " ";
+		}
 		
 	}
 	
