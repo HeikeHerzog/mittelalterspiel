@@ -56,6 +56,7 @@ public class Marktplatz
 	
 	public void setNaechstenSpieler() {
 		
+		
 	}
 	
 // 15.11.2013	
@@ -64,7 +65,7 @@ public class Marktplatz
 		if (gesPreis <= gold) {     //gold reicht aus um die Anzahl an Land zu erwerben
 			for (int i=0; i<menge; i++) {
 				Land neuesLand = new Land();
-				this.aktiverSpieler.saldiereGold(gesPreis);
+				this.aktiverSpieler.saldiereGold(gesPreis*(-1));
 				fuegeSpielerLandHinzu(this.aktiverSpieler, neuesLand);
 			}
 			return true;
@@ -99,7 +100,7 @@ public class Marktplatz
 				if (gold >= preisGebaeude) {
 					Feld neuesFeld = new Feld();
 					this.aktiverSpieler.besetzeLandMitGebaeude(neuesFeld, freiesLand);
-					this.aktiverSpieler.saldiereGold(preisGebaeude);
+					this.aktiverSpieler.saldiereGold(preisGebaeude*(-1)); // Gold beim Spieler abziehen
 					return true;
 				} 
 				break;
@@ -107,7 +108,7 @@ public class Marktplatz
 				if (gold >= preisGebaeude) {
 					Muehle neueMuehle = new Muehle();
 					this.aktiverSpieler.besetzeLandMitGebaeude(neueMuehle, freiesLand);
-					this.aktiverSpieler.saldiereGold(preisGebaeude);
+					this.aktiverSpieler.saldiereGold(preisGebaeude*(-1));
 					return true;
 				} 
 				break;
@@ -116,7 +117,7 @@ public class Marktplatz
 				if (gold >= preisGebaeude) {
 					Kornkammer neueKornkammer = new Kornkammer();
 					this.aktiverSpieler.besetzeLandMitGebaeude(neueKornkammer, freiesLand);
-					this.aktiverSpieler.saldiereGold(preisGebaeude);
+					this.aktiverSpieler.saldiereGold(preisGebaeude*(-1));
 					return true;
 				} 
 				break;
@@ -136,7 +137,7 @@ public class Marktplatz
 		}
 		else {
 			this.aktiverSpieler.saldiereSoldaten(anzahl);
-			this.aktiverSpieler.saldiereGold(gold);
+			this.aktiverSpieler.saldiereGold(gold*(-1));
 			return true;
 		}	
 	}
@@ -150,24 +151,24 @@ public class Marktplatz
 				switch (auswahl) {
 				case 1: 	//Korn kaufen
 					if (gold >= (menge*this.preisKorn)) {
-						this.aktiverSpieler.saldiereHandelsware(auswahl, menge);
-						this.aktiverSpieler.saldiereGold(menge*this.preisKorn);
-						saldiereHandelsware(auswahl, menge);
+						this.aktiverSpieler.saldiereHandelsware(auswahl, menge); //Kornmenge beim Spieler erhöhen
+						this.aktiverSpieler.saldiereGold(menge*this.preisKorn*(-1));  //Gold wird abgezogen
+						saldiereHandelsware(auswahl, menge*(-1)); //auf dem Marktplatz wird die Kornmenge verringert
 						return true;
 					}
 					break;
 				case 2: 	//Mehl kaufen 
 					if (gold >= (menge*this.preisMehl)) {
-						this.aktiverSpieler.saldiereHandelsware(auswahl, menge);
-						this.aktiverSpieler.saldiereGold(menge*this.preisMehl);
-						saldiereHandelsware(auswahl, menge);
+						this.aktiverSpieler.saldiereHandelsware(auswahl, menge); //Mehlmenge beim Spieler erhöhen
+						this.aktiverSpieler.saldiereGold(menge*this.preisMehl*(-1)); //Gold beim Spieler abziehen
+						saldiereHandelsware(auswahl, menge*(-1)); //Mehl auf dem Marktplatz erhöhen
 						return true;
 					}
 					break;
 				case 3: 	// Dünger kaufen
 					if (gold >= (menge*this.preisDuenger)) {
-						this.aktiverSpieler.saldiereHandelsware(auswahl, menge);
-						this.aktiverSpieler.saldiereGold(menge*this.preisDuenger);
+						this.aktiverSpieler.saldiereHandelsware(auswahl, menge); //Dünger beim Spieler erhöhen
+						this.aktiverSpieler.saldiereGold(menge*this.preisDuenger*(-1)); //Gold beim Spieler abziehen
 						return true;
 					}
 					break;
@@ -186,17 +187,17 @@ public class Marktplatz
 			return false;		// Abbruch
 		}
 		else if (auswahl == 1) { 	// Korn verkaufen
-			if (this.aktiverSpieler.getKorn() >= menge) {
-				aktiverSpieler.saldiereHandelsware(auswahl, menge);
-				aktiverSpieler.saldiereGold(menge*preisKorn);
-				saldiereHandelsware(auswahl, menge);
+			if (this.aktiverSpieler.getKorn() >= menge) {	//Spieler hat genügend Korn zum Verkaufen
+				aktiverSpieler.saldiereHandelsware(auswahl, menge*(-1));  // Kornmenge beim Spieler verringern
+				aktiverSpieler.saldiereGold(menge*preisKorn);	//Gold des Spielers erhöhen
+				saldiereHandelsware(auswahl, menge);	//Marktplatz bekommt Korn dazu
 				return true;
 			} else return false;
 		} else if (auswahl == 2) {	// Mehl verkaufen
 			if (this.aktiverSpieler.getMehl() >= menge) {
-				aktiverSpieler.saldiereHandelsware(auswahl, menge);
-				aktiverSpieler.saldiereGold(menge*preisMehl);
-				saldiereHandelsware(auswahl, menge);
+				aktiverSpieler.saldiereHandelsware(auswahl, menge*(-1));  //Mehlmenge beim Spieler verringern
+				aktiverSpieler.saldiereGold(menge*preisMehl);  // Spieler bekommt Gold fürs Mehl
+				saldiereHandelsware(auswahl, menge);  //Marktplatz bekommt Mehl
 				return true;
 			} else return false;
 		}
@@ -260,8 +261,9 @@ public class Marktplatz
 	
 	
 	public void incRundenzaehler() {
-		rundenzaehler += 1;
-		
+		if (aktiverSpieler.equals(startSpieler)){
+			rundenzaehler += 1;
+		}
 	}
 	
 	// am Montag klären...
