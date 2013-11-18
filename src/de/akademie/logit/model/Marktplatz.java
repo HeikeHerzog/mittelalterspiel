@@ -130,14 +130,14 @@ public class Marktplatz
 	}
 	
 	
-// 15.11.2013	
+// 15.11.2013	18.11.2013
 	public boolean kaufeSoldaten(int anzahl, int gold) {
-		if (gold < soldatenPreis) {
+		if (gold < (soldatenPreis*anzahl)) {
 			return false;			// Gold reicht nicht -> zurück zu Soldaten bearbeiten
 		}
 		else {
-			this.aktiverSpieler.saldiereSoldaten(anzahl);
-			this.aktiverSpieler.saldiereGold(gold*(-1));
+			this.aktiverSpieler.saldiereSoldaten(anzahl);  //Soldaten des aktiven Spielers erhöhen
+			this.aktiverSpieler.saldiereGold(soldatenPreis*anzahl*(-1)); // Gold vom Spieler abziehen
 			return true;
 		}	
 	}
