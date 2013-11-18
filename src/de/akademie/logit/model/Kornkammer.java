@@ -1,15 +1,21 @@
 package de.akademie.logit.model;
 
-public class Kornkammer extends Gebaeude {
+public class Kornkammer extends Gebaeude
+{
+	private final static String BEZEICHNUNG = "Kornkammer";
+	private final static int MAX_LAGERMENGE = 100;
 
-	private final static int MAX_LAGERMENGE=100;
+	public Kornkammer()
+	{}
 
-	public Kornkammer() {
-		super();
-		// TODO Auto-generated constructor stub
+	public String getBezeichnung()
+	{
+		return BEZEICHNUNG;
 	}
-	
-	
-	
-	
+
+	public int getMaxLagermenge()
+	{
+		return MAX_LAGERMENGE;
+	}
+
 }
