@@ -65,7 +65,7 @@ public class Marktplatz
 		if (gesPreis <= gold) {     //gold reicht aus um die Anzahl an Land zu erwerben
 			for (int i=0; i<menge; i++) {
 				Land neuesLand = new Land();
-				this.aktiverSpieler.saldiereGold(gesPreis*(-1));
+				this.aktiverSpieler.saldiereGold(preisLand*(-1));
 				fuegeSpielerLandHinzu(this.aktiverSpieler, neuesLand);
 			}
 			return true;
