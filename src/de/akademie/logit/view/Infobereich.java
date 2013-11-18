@@ -21,7 +21,7 @@ public class Infobereich
 		System.out.println( "Name:                " + this.spieler.getName() );
 		System.out.println( "Titel:               " + this.spieler.getTitel() );
 		System.out.println( "Gold:                " + this.spieler.getGold() );
-//		System.out.println( this.spieler.getBesitz() );
+		System.out.println( this.spieler.getBesitz() );
 		System.out.println( "Soldaten:            " + this.spieler.getSoldaten() );
 		System.out.println( "Steuersatz:          " + this.spieler.getSteuersatz() );
 		System.out.println( "Mehl:                " + this.spieler.getMehl() );
@@ -30,7 +30,7 @@ public class Infobereich
 		System.out.println( "Essensration:        " + this.spieler.getEssensration() );
 		System.out.println( "Bevölkerungsanzahl:  " + this.spieler.getBevoelkerungsanzahl() );
 		System.out.println( "Ich wurde sabotiert: " + ( this.spieler.isSabotageOpfer() == true ? "Ja" : "Nein" ) );
-		System.out.println( "Ich habe sabotiert:  " + ( this.spieler.getSabotage() == true ? "Ja" : "Nein" ) );
+		System.out.println( "Ich habe sabotiert:  " + ( this.spieler.isSaboteur() == true ? "Ja" : "Nein" ) );
 		System.out.println( "Zufriedenheit:       " + this.spieler.getBevoelkerungszufriedenheit() );
 	}
 
