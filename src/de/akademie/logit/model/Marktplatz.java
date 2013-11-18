@@ -75,10 +75,10 @@ public class Marktplatz
 	}	
 	
 	
-	//15.11.2013
+	//18.11.2013
 	public boolean zerstoereGebaeude(int auswahl) {
 		boolean gefunden = false;
-		gefunden = this.aktiverSpieler.zerstoereGesuchtesGebaeude();
+		gefunden = this.aktiverSpieler.zerstöreGesuchtesGebaeude(auswahl);
 		
 		if (gefunden) {
 			return true;
