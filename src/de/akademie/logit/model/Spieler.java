@@ -117,6 +117,39 @@ public class Spieler
 	
 	
 	public boolean zerstöreGesuchtesGebaeude(int auswahl) {
+		
+		for (int i = 0; i < this.laendereien.size(); i++) {
+			
+			switch (auswahl) {
+			
+			case 1: 	// eigenes Feld finden und zerstören
+				
+				if (this.laendereien.get(i).getBezeichnung().equals ("Feld")) {
+					this.laendereien.get(i).setGebaeude(null);
+					return true;
+					
+				}
+				break;
+				
+			case 2: 	// eigene Muehle finden und zerstören
+				if (this.laendereien.get(i).getBezeichnung().equals ("Mühle")) {
+					this.laendereien.get(i).setGebaeude(null);
+					return true;
+				}
+				break;
+				
+			case 3: 	// eigene Kornkammer finden und zerstören
+				if (this.laendereien.get(i).getBezeichnung().equals ("Kornkammer")) {
+					this.laendereien.get(i).setGebaeude(null);
+					return true;
+				}
+				break;
+		
+			default:
+				break;
+			}
+				
+		}
 		return false;
 	}
 	
@@ -130,6 +163,8 @@ public class Spieler
 	}
 	
 	public void saldiereKorn(int gesMenge, int mahlMenge) {
+		
+		
 		
 	}
 	
@@ -258,11 +293,12 @@ public class Spieler
 	
 	
 	/* Wenn Soldaten nicht genug zu essen haben oder nicht bezahlt werden können,
-	 * wandert die "unterversorgte" Anzahl von Soldaten ab
-	 * 	 */
+	 * wandert die "unterversorgte" Anzahl von Soldaten ab.
+	 * Soldaten bekommen immer die volle Essensration von 2 Mehleinheiten als Nahrung.
+	 */
 	public void soldatenVersorgen(int sold) {
 		
-		int benötigtesMehl = this.soldaten * 2;  //Soldaten bekommen immer die volle Essensration von 2 Mehleinheiten
+		int benötigtesMehl = this.soldaten * 2;  
 		int benötigtesGold = this.soldaten * sold;
 		
 		int satteSoldaten = Integer.valueOf(Math.round(this.mehl/2));
@@ -332,28 +368,71 @@ public class Spieler
 				break;
 				
 			case 3: 	//Kornkammern zaehlen
-				
-					
-				} 
+				if (this.laendereien.get(i).getBezeichnung() == "Kornkammer") {
+					anzahl++;
+				}
 				break;
 		
 			default:
 				break;
-		}
+			}
 				
-		return false;
-		
+		}
+		return anzahl;
 	}
 	
 	
+	
+	
+	/* Pro Feld werden 50 Korn geerntet. Wenn genügend Dünger vorhanden ist, kann die zu erntende Menge an Korn
+	 * verdoppelt werden.
+	 * Ist Dünger nur anteilig vorhanden, wird die zur erntende Menge entsprechend anteilig verdoppelt.
+	 * Korn, dass ausserhalb einer Kornkammer gelagert werden muss, verdirbt zu 50%.
+	 */
 	public void kornErntenUndVerteilen() {
+				
+		int anzahlFelder = zaehleGebaeude(1);
+		int anzahlKornkammern = zaehleGebaeude(3);
+		int maxLagerMengeInKornkammer = new Kornkammer().getMaxLagermenge();
+		int ernteMitDuenger = 0;
+		int benoetigteKornkammern = 0;
 		
-		int anzahlFelder = this.laendereien.size();
 		
-		for (Land land : this.laendereien)
-		{
-			besitz = besitz + land.getGebaeude().getBezeichnung() + " ";
+		int ernte = anzahlFelder * new Feld().getKornProRunde();
+		
+		
+		if (this.getDuenger() >= ernte) {
+			
+			ernteMitDuenger = ernte *2;
+			
 		}
+		
+		else if (this.getDuenger() < ernte) {
+			
+			ernteMitDuenger = ernte + this.getDuenger();
+			
+		}
+		
+		this.korn = this.korn + ernteMitDuenger;
+		
+		
+		if (this.duenger - ernte < 0 ){
+			this.duenger = 0;
+		}
+		else {
+			this.duenger = this.duenger - ernte;
+		}
+			
+		
+		benoetigteKornkammern = (int)(this.korn / maxLagerMengeInKornkammer);
+		
+		if (anzahlKornkammern < benoetigteKornkammern) {
+					
+			int kornInnerhalbDerKornkammern = anzahlKornkammern * maxLagerMengeInKornkammer;
+			int kornAusserhalbDerKornkammern = this.korn - kornInnerhalbDerKornkammern;
+			this.korn = this.korn - (kornAusserhalbDerKornkammern/2);
+		}
+			
 		
 	}
 	
