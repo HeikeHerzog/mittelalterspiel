@@ -86,21 +86,9 @@ public class EingabeController
 			Spieler aktiverSpieler = this.marktplatz.getAktivenSpieler();
 			EreignisController ereignisController = new EreignisController( aktiverSpieler );
 			Anzeige.zeigeMenuAn( aktiverSpieler, Spielerhauptmenumaske.getInstance() );
-			int eingabe = -1;
 
-			while ( eingabe < 0 || eingabe > 8 )
-			{
-				Anzeige.zeigeStringAn( "Auswahl eingeben:" );
-				try
-				{
-					eingabe = Integer.parseInt( getEingabe() );
-				}
-				catch ( NumberFormatException nfEx )
-				{
-					System.out.println( "Es wurde keine Zahl eingegeben." );
-				}
-			}
-			
+			// [0..8]
+			int eingabe = select( 8 );
 			switch ( eingabe )
          {
 				case 0:
@@ -109,7 +97,36 @@ public class EingabeController
 					break;
 				case 1:
 					Anzeige.zeigeMenuAn( aktiverSpieler, Landmenu.getInstance() );
-					
+					int auswahl = select( 1 );
+				   // [0..1]
+					switch ( auswahl )
+               {
+						case 0:
+							// zurück zur Spielerhauptmenümaske
+							break;
+						case 1:
+							// Land kaufen
+							int gold = aktiverSpieler.getGold();
+							if( gold < 1 )
+							{
+								Anzeige.zeigeStringAn( "Kein Gold - kein Land" );
+								break;
+							}
+							else
+							{
+								int anzLandKauf = select( Integer.MAX_VALUE );
+								boolean erfolgreich = this.marktplatz.kaufeLand( anzLandKauf, gold );
+								if( erfolgreich )
+								{
+									Anzeige.zeigeStringAn( "Landkauf erfolgreich." );
+								}
+								else
+								{
+									Anzeige.zeigeStringAn( "Nicht genügend Gold." );
+								}
+							}
+							break;
+					}
 					break;
 				case 2:
 					Anzeige.zeigeMenuAn( aktiverSpieler, Gebaeudemenu.getInstance() );
@@ -142,10 +159,30 @@ public class EingabeController
 					break;
 				default:
 					break;
-			}
-		}
-		
+			}   // switch ( eingabe )
+		}   // while
+
 	}
+
+	// liefert für die Menüs die eingegebene Auswahl von [0..maxEingabe] zurück. 
+	private int select( int maxEingabe )
+   {
+		int eingabe = -1;
+	   while ( eingabe < 0 || eingabe > maxEingabe )
+	   {
+	   	Anzeige.zeigeStringAn( "Auswahl eingeben:" );
+	   	try
+	   	{
+	   		eingabe = Integer.parseInt( getEingabe() );
+	   	}
+	   	catch ( NumberFormatException nfEx )
+	   	{
+	   		System.out.println( "Es wurde keine Zahl eingegeben." );
+	   	}
+	   }
+
+	   return eingabe;
+   }
 
 	public String getEingabe()
 	{
