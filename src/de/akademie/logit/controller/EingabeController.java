@@ -6,7 +6,13 @@ import java.io.InputStreamReader;
 
 import de.akademie.logit.model.Marktplatz;
 import de.akademie.logit.model.Spieler;
+import de.akademie.logit.view.Aktionsmenu;
 import de.akademie.logit.view.Anzeige;
+import de.akademie.logit.view.Gebaeudemenu;
+import de.akademie.logit.view.Handelswarenmenu;
+import de.akademie.logit.view.Landmenu;
+import de.akademie.logit.view.Sabotagemenu;
+import de.akademie.logit.view.Soldatenmenu;
 import de.akademie.logit.view.Spielerhauptmenumaske;
 
 /**
@@ -70,12 +76,75 @@ public class EingabeController
 			Spieler startSpieler = this.marktplatz.ermittleStartSpieler( this.anzSpieler );
 			this.marktplatz.setAktivenSpieler( startSpieler );
 			
-			Anzeige.zeigeMenuAn( startSpieler, Spielerhauptmenumaske.getInstance() );
 	}
 
 	public void loop()
 	{
+		boolean spielen = true;
+		while( spielen )
+		{
+			Spieler aktiverSpieler = this.marktplatz.getAktivenSpieler();
+			EreignisController ereignisController = new EreignisController( aktiverSpieler );
+			Anzeige.zeigeMenuAn( aktiverSpieler, Spielerhauptmenumaske.getInstance() );
+			int eingabe = -1;
 
+			while ( eingabe < 0 || eingabe > 8 )
+			{
+				Anzeige.zeigeStringAn( "Auswahl eingeben:" );
+				try
+				{
+					eingabe = Integer.parseInt( getEingabe() );
+				}
+				catch ( NumberFormatException nfEx )
+				{
+					System.out.println( "Es wurde keine Zahl eingegeben." );
+				}
+			}
+			
+			switch ( eingabe )
+         {
+				case 0:
+					spielen = false;
+					spielBeenden();
+					break;
+				case 1:
+					Anzeige.zeigeMenuAn( aktiverSpieler, Landmenu.getInstance() );
+					
+					break;
+				case 2:
+					Anzeige.zeigeMenuAn( aktiverSpieler, Gebaeudemenu.getInstance() );
+					
+					break;
+				case 3:
+					Anzeige.zeigeMenuAn( aktiverSpieler, Soldatenmenu.getInstance() );
+					
+					break;
+				case 4:
+					Anzeige.zeigeMenuAn( aktiverSpieler, Handelswarenmenu.getInstance() );
+					
+					break;
+				case 5:
+					Anzeige.zeigeMenuAn( aktiverSpieler, Sabotagemenu.getInstance() );
+					
+					break;
+				case 6:
+					Anzeige.zeigeMenuAn( aktiverSpieler, Aktionsmenu.getInstance() );
+					
+					break;
+				case 7:
+					Anzeige.zeigeStringAn( "Hier Chat" );
+					
+					break;
+				case 8:
+					aktiverSpieler.setSabotage( false );
+					aktiverSpieler.setTitelflag( false );
+					spielzugBeenden();
+					break;
+				default:
+					break;
+			}
+		}
+		
 	}
 
 	public String getEingabe()
@@ -101,7 +170,7 @@ public class EingabeController
 
 	public Marktplatz getMarktplatz()
 	{
-		return null;
+		return this.marktplatz;
 	}
 
 	public void spielzugBeenden()

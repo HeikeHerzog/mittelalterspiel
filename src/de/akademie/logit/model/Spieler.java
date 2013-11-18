@@ -155,6 +155,10 @@ public class Spieler
 		this.sabotageflag = _sabotageflag;
 	}
 	
+	public boolean getSabotage()
+	{
+		return this.sabotageflag;
+	}
 	
 	public void sabotageDurchfuehren() {
 		
@@ -313,50 +317,7 @@ public class Spieler
 		
 	}
 	
-	public int zaehleGebaeude(int auswahl) {
-		int anzahl = 0;
-		
-		for (int i = 0; i < this.laendereien.size(); i++) {
-			switch (auswahl) {
-			
-			case 1: 	// Felder zaehlen
-				if (this.laendereien.get(i).getBezeichnung() == "Feld") {
-					anzahl++;
-				}
-				break;
-				
-			case 2: 	//Muehlen zaehlen
-				if (this.laendereien.get(i).getBezeichnung() == "Mühle") {
-					anzahl++;
-				}
-				break;
-				
-			case 3: 	//Kornkammern zaehlen
-				
-					
-				} 
-				break;
-		
-			default:
-				break;
-		}
-				
-		return false;
-		
-	}
-	
-	
-	public void kornErntenUndVerteilen() {
-		
-		int anzahlFelder = this.laendereien.size();
-		
-		for (Land land : this.laendereien)
-		{
-			besitz = besitz + land.getGebaeude().getBezeichnung() + " ";
-		}
-		
-	}
-	
+
 	
 	public void zufriedenheitAnpassen() {
 		

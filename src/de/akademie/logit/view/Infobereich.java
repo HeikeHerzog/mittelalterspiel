@@ -30,6 +30,7 @@ public class Infobereich
 		System.out.println( "Essensration:        " + this.spieler.getEssensration() );
 		System.out.println( "Bevölkerungsanzahl:  " + this.spieler.getBevoelkerungsanzahl() );
 		System.out.println( "Ich wurde sabotiert: " + ( this.spieler.isSabotageOpfer() == true ? "Ja" : "Nein" ) );
+		System.out.println( "Ich habe sabotiert:  " + ( this.spieler.getSabotage() == true ? "Ja" : "Nein" ) );
 		System.out.println( "Zufriedenheit:       " + this.spieler.getBevoelkerungszufriedenheit() );
 	}
 
