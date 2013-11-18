@@ -17,6 +17,7 @@ public class Programm
 	{
 		EingabeController eingabeController = new EingabeController();
 		eingabeController.initialisieren();
+		eingabeController.loop();
 		
 //		Spieler spieler = new Spieler("Paul");
 //		spieler.setNextTitel();

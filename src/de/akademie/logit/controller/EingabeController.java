@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import de.akademie.logit.model.Marktplatz;
 import de.akademie.logit.model.Spieler;
 import de.akademie.logit.view.Anzeige;
+import de.akademie.logit.view.Spielerhauptmenumaske;
 
 /**
  * 
@@ -15,23 +16,23 @@ import de.akademie.logit.view.Anzeige;
  */
 public class EingabeController
 {
-
 	private Marktplatz marktplatz;
 	private SabotageaktController sabotageakt;
+	int anzSpieler;
 
 	public EingabeController()
 	{}
 
 	public void initialisieren()
 	{
-		int anzSpieler = -1;
+		this.anzSpieler = -1;
 
-		while ( anzSpieler < 0 || anzSpieler > 4 )
+		while ( this.anzSpieler < 0 || this.anzSpieler > 4 )
 		{
 			Anzeige.zeigeStringAn( "Anzahl der Spieler ( 0 bis 4 ) eingeben:" );
 			try
 			{
-				anzSpieler = Integer.parseInt( getEingabe() );
+				this.anzSpieler = Integer.parseInt( getEingabe() );
 			}
 			catch ( NumberFormatException nfEx )
 			{
@@ -39,7 +40,7 @@ public class EingabeController
 			}
 		}
 
-		switch ( anzSpieler )
+		switch ( this.anzSpieler )
 		{
 			case 0:
 				spielBeenden();
@@ -51,7 +52,7 @@ public class EingabeController
 
 				// erfassen der Spieler
 				String spielerName = "";
-				for ( int i = 1; i < anzSpieler; i++ )
+				for ( int i = 1; i <= this.anzSpieler; i++ )
 				{
 					Anzeige.zeigeStringAn( i + ". Spielernamen eingeben:" );
 					spielerName = getEingabe();
@@ -65,7 +66,11 @@ public class EingabeController
 				}
 				break;
 		}
-
+		
+			Spieler startSpieler = this.marktplatz.ermittleStartSpieler( this.anzSpieler );
+			this.marktplatz.setAktivenSpieler( startSpieler );
+			
+			Anzeige.zeigeMenuAn( startSpieler, Spielerhauptmenumaske.getInstance() );
 	}
 
 	public void loop()
@@ -106,9 +111,9 @@ public class EingabeController
 
 	public void spielBeenden()
 	{
-		System.out
-		      .println( "Vielen Dank, dass Sie sich für unser Produkt entschieden haben und nicht für eines der unsäglichen Konkurrenzprodukte, die nicht im Ansatz an unser an Innovation nicht zu überbietendes Feuerwerk an bla, bla, bla, bla (Marketingfuzzi) ..." );
+		System.out.println( "Vielen Dank, dass Sie sich für unser Produkt entschieden haben und nicht für eines der unsäglichen Konkurrenzprodukte, die nicht im Ansatz an unser an Innovation nicht zu überbietendes Feuerwerk an bla, bla, bla, bla (Marketingfuzzi) ..." );
 		System.out.println( "Spiel beendet." );
 		System.exit( 0 );
 	}
+
 }

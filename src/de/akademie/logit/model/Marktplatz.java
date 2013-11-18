@@ -2,12 +2,13 @@ package de.akademie.logit.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 public class Marktplatz
 {
 
-	private ArrayList<Spieler> spieler;
+	private List<Spieler> spieler = new ArrayList<Spieler>();
 	private Spieler startSpieler;
 	private Spieler aktiverSpieler;
 	private int soldaten;
@@ -36,7 +37,9 @@ public class Marktplatz
 	}
 	
 	
-	public Spieler ermittleStartSpieler() {
+	public Spieler ermittleStartSpieler( int anzSpieler )
+	{
+		this.startSpieler = this.spieler.get( (int) ( Math.random() * anzSpieler ) );
 		return startSpieler;
 	}
 	
