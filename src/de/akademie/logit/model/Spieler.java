@@ -196,13 +196,11 @@ public class Spieler
 	
 	
 	public boolean isSaboteur() {
-		return false;
-	}
-	
-	public boolean getSabotage()
-	{
+		
 		return this.sabotageflag;
 	}
+	
+	
 	
 	public void setSabotage(boolean _sabotageflag) {
 		this.sabotageflag = _sabotageflag;
@@ -282,17 +280,29 @@ public class Spieler
 	}
 	
 	public int ermittleGoldBetrag(int inProzent) {
-		return 0;
+		
+		int goldbetrag = (int)(this.gold * inProzent)/100;
+		
+		return goldbetrag;
 	}
 	
 	
 	public int ermittleKornMenge(int inProzent) {
-		return 0;
+		
+		int kornmenge = (int)(this.korn * inProzent)/100;
+		
+		return kornmenge;
+	
 	}
 	
+	
 	public int ermittleSoldatenAnzahl(int inProzent) {
-		return 0;
+		
+		int soldatenanzahl = (int)(this.soldaten * inProzent)/100;
+		
+		return soldatenanzahl;
 	}
+	
 	
 	public int getBevoelkerungsanzahl() {
 		return this.bevoelkerungsanzahl;
