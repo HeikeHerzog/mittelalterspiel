@@ -16,11 +16,11 @@ public class Marktplatz
 	private static int rundenzaehler;
 	private HashMap<Integer, Spieler>opfermap;
 	private int preisKorn = 1;
-	private int mengeKornAnfang;
-	private int mengeKornEnde;
+	private int mengeKornAnfang = 1000;
+	private int mengeKornEnde = 1000;
 	private int preisMehl = 2;
-	private int mengeMehlAnfang;
-	private int mengeMehlEnde;
+	private int mengeMehlAnfang = 1000;
+	private int mengeMehlEnde = 1000;
 	private int preisDuenger = 1;
 	private int preisGebaeude = 10;
 	private int preisLand = 20;
@@ -217,7 +217,7 @@ public class Marktplatz
 	
 	public String holeSpielernamen() {
 	
-		return "Hans";
+			return "Hans";
 	}
 	
 	public int getSold() {
@@ -226,7 +226,19 @@ public class Marktplatz
 	
 	
 	public void preiseAnpassen() {
+		int unterschied = mengeMehlEnde - mengeMehlAnfang;
+		
 		//Preise für Korn und Mehl werden im Verhältnis Anfangsbestand : Endbestand ermittelt
+		
+		// wenn der Mehlendbestand sich um min. 50% des Anfangsbestandes erhöht hat wird das Mehl billiger
+		if (unterschied >= ((int)(mengeMehlAnfang/2)) && (preisMehl > 1)) { 
+			preisMehl = (int)(preisMehl/2);
+		}
+		// wenn der Mehlendbestand kleiner als der Mehlanfangsbestand ist wird das Mehl ggf. teurer
+		// dafür muss sich der Mehlbestand um die hälfte des Anfangsbestandes verringert haben
+		if ( (unterschied < 0) && ( (unterschied*-1) >= ((int)(mengeMehlAnfang/2)) )) {
+			preisMehl += (int)(preisMehl/2);	
+		}		
 	}
 	
 	
