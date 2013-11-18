@@ -6,9 +6,9 @@ import java.util.List;
 public class Titel
 {
 	private List<String> titel = new LinkedList<String>();
-	private final static int gold = 20;
-	private final static int landmin = 5; 
-	
+	private final static int GOLD = 20;
+	private final static int LANDMIN = 5;
+
 	public Titel()
 	{
 		this.titel.add( "Bauer" );
@@ -16,17 +16,23 @@ public class Titel
 		this.titel.add( "Baron" );
 		this.titel.add( "Lord" );
 		this.titel.add( "Fuerst" );
-		this.titel.add( "Prinz" );		
+		this.titel.add( "Prinz" );
 		this.titel.add( "Koenig" );
 	}
-	
+
 	public int getGold()
 	{
-		return Titel.gold;
+		return Titel.GOLD;
 	}
-	
+
 	public int getLandmin()
 	{
-		return Titel.landmin;
+		return Titel.LANDMIN;
 	}
+
+	public String getTitel( int index )
+	{
+		return this.titel.get( index );
+	}
+
 }

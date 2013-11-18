@@ -1,12 +1,14 @@
 package de.akademie.logit.model;
 
-public class Muehle extends Gebaeude {
+public class Muehle extends Gebaeude
+{
+	private final static String BEZEICHNUNG = "Mühle";
 
-	public Muehle() {
-		super();
-		// TODO Auto-generated constructor stub
+	public Muehle()
+	{}
+
+	public String getBezeichnung()
+	{
+		return BEZEICHNUNG;
 	}
-	
-	
-
 }

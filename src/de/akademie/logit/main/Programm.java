@@ -1,5 +1,7 @@
 package de.akademie.logit.main;
 
+import de.akademie.logit.controller.EingabeController;
+import de.akademie.logit.model.Spieler;
 import de.akademie.logit.view.Aktionsmenu;
 import de.akademie.logit.view.Anzeige;
 import de.akademie.logit.view.Gebaeudemenu;
@@ -13,12 +15,18 @@ public class Programm
 {
 	public static void main( String[] args )
 	{
-		Anzeige.zeigeMenuAn( Spielerhauptmenumaske.getInstance() );
-		Anzeige.zeigeMenuAn( Landmenu.getInstance() );
-		Anzeige.zeigeMenuAn( Gebaeudemenu.getInstance() );
-		Anzeige.zeigeMenuAn( Soldatenmenu.getInstance() );
-		Anzeige.zeigeMenuAn( Handelswarenmenu.getInstance() );
-		Anzeige.zeigeMenuAn( Sabotagemenu.getInstance() );
-		Anzeige.zeigeMenuAn( Aktionsmenu.getInstance() );
+		EingabeController eingabeController = new EingabeController();
+		eingabeController.initialisieren();
+		
+//		Spieler spieler = new Spieler("Paul");
+//		spieler.setNextTitel();
+		
+//		Anzeige.zeigeMenuAn( spieler, Spielerhauptmenumaske.getInstance() );
+//		Anzeige.zeigeMenuAn( spieler, Landmenu.getInstance() );
+//		Anzeige.zeigeMenuAn( spieler, Gebaeudemenu.getInstance() );
+//		Anzeige.zeigeMenuAn( spieler, Soldatenmenu.getInstance() );
+//		Anzeige.zeigeMenuAn( spieler, Handelswarenmenu.getInstance() );
+//		Anzeige.zeigeMenuAn( spieler, Sabotagemenu.getInstance() );
+//		Anzeige.zeigeMenuAn( spieler, Aktionsmenu.getInstance() );
 	}
 }

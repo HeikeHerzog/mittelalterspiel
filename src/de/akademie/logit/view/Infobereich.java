@@ -21,7 +21,7 @@ public class Infobereich
 		System.out.println( "Name:                " + this.spieler.getName() );
 		System.out.println( "Titel:               " + this.spieler.getTitel() );
 		System.out.println( "Gold:                " + this.spieler.getGold() );
-		System.out.println( "Land mit Gebäuden:   " + this.spieler );
+		System.out.println( this.spieler.getBesitz() );
 		System.out.println( "Soldaten:            " + this.spieler.getSoldaten() );
 		System.out.println( "Steuersatz:          " + this.spieler.getSteuersatz() );
 		System.out.println( "Mehl:                " + this.spieler.getMehl() );

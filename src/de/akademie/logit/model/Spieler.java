@@ -7,7 +7,9 @@ import de.akademie.logit.controller.EreignisController;
 public class Spieler
 {
 	private String name;
-	private Titel titel;
+	private Titel titel = new Titel();
+	// initialer Titelindex wird im Constructor um eins inc
+	private int indexTitel = -1;
 	private int gold=100;
 	private ArrayList<Land> laendereien = new ArrayList<Land>();
 	private int soldaten;
@@ -32,13 +34,30 @@ public class Spieler
 	
 	public Spieler(String _name) {
 		this.name = _name;
+		// erste Stufe: Bauer
+		setNextTitel();
+
+		this.marktplatz = new Marktplatz();
+
+      // initial hat jeder Spieler 3 Land mit je einem Gebäude
+		Land land = new Land();
+		land.setGebaeude( new Feld() );
+		this.marktplatz.fuegeSpielerLandHinzu( this, land );
+		
+		land = new Land();
+		land.setGebaeude( new Kornkammer() );
+		this.marktplatz.fuegeSpielerLandHinzu( this, land );
+		
+		land = new Land();
+		land.setGebaeude( new Muehle() );
+		this.marktplatz.fuegeSpielerLandHinzu( this, land );
 	}
 	
 	public String getName() {
 		return this.name;
 	}
 	
-	
+	// TODO: Titel aktuellerTitel durch getTitel() ersetzen
 	public boolean titelErwerben(Titel aktuellerTitel, int gold, ArrayList<Land> laendereien) {
 		return false;
 	}
@@ -65,11 +84,28 @@ public class Spieler
 	}
 	
 	
-	public ArrayList<Land> getLandListe() {
+	public ArrayList<Land> getLandListe()
+	{
 		return this.laendereien;
 	}
-	
-	
+
+	public String getBesitz()
+	{
+		String besitz = new String();
+
+		if ( this.laendereien.size() == 0 )
+		{
+			return "Kein Land vorhanden!";
+		}
+
+		for (Land land : this.laendereien)
+		{
+			besitz = besitz + land.getGebaeude().getBezeichnung() + " ";
+		}
+
+		return "Gebäude pro " + new Land().getBezeichnung() + ":    " + besitz;
+	}
+
 	public Land findeFreiesLand() {
 		return null;
 	}
@@ -135,16 +171,18 @@ public class Spieler
 	}
 	
 	
-	public Titel getTitel() {
-		return this.titel;
+	public void setNextTitel()
+	{
+		this.indexTitel = this.indexTitel + 1;
 	}
-	
-	
-	public void setTitel(Titel neuerTitel) {
-		
+
+	public String getTitel()
+	{
+		return this.titel.getTitel( this.indexTitel ) ;
 	}
 
 	
+
 	/* Essensrationen können halb, voll oder doppelt sein.
 	 * Eine volle Essensration sind 2 Einheiten Mehl.
 	 * Eine halbe Essensration ist 1 Einheit Mehl.
@@ -236,15 +274,7 @@ public class Spieler
 			this.mehl = 0;
 			
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 	}
 	
 	

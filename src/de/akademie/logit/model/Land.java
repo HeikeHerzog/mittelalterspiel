@@ -1,19 +1,26 @@
 package de.akademie.logit.model;
 
-public class Land {
-
+public class Land
+{
+	private final static String BEZEICHNUNG = "Land";
 	private Gebaeude gebaeude;
-	
-	public Land() {
-		
+
+	public Land()
+	{}
+
+	public String getBezeichnung()
+	{
+		return BEZEICHNUNG;
 	}
-	
-	public Gebaeude getGebaeude() {
+
+	public Gebaeude getGebaeude()
+	{
 		return gebaeude;
 	}
-	
-	public void setGebaeude (Gebaeude _gebaeude) {
-		this.gebaeude = _gebaeude;
+
+	public void setGebaeude( Gebaeude gebaeude )
+	{
+		this.gebaeude = gebaeude;
 	}
-	
+
 }
