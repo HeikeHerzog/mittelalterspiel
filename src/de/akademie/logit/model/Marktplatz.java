@@ -216,11 +216,7 @@ public class Marktplatz
 	
 	
 	public String holeSpielernamen() {
-//		for (Spieler sp : spieler) {
-//			sp.getName();
-		//}
-			
-			
+	
 		return "Hans";
 	}
 	
