@@ -12,6 +12,7 @@ import de.akademie.logit.view.Anzeige;
 import de.akademie.logit.view.Gebaeudemenu;
 import de.akademie.logit.view.Gebaeudeuntermenu;
 import de.akademie.logit.view.Handelswarenmenu;
+import de.akademie.logit.view.Handelswarenuntermenu;
 import de.akademie.logit.view.Landmenu;
 import de.akademie.logit.view.Sabotagemenu;
 import de.akademie.logit.view.Soldatenmenu;
@@ -148,13 +149,17 @@ public class EingabeController
 								Anzeige.zeigeMenuAn(aktiverSpieler, Gebaeudeuntermenu.getInstance());
 								int was = select(3);
 								
-								boolean erfolgreich = this.marktplatz.kaufeGebaeude(was, gold, freiesLand);
-								if( erfolgreich ) {
-									Anzeige.zeigeStringAn( "Gebäudekauf erfolgreich." );
+								if (was == 0) {
+									// zurück
+								} else {
+									boolean erfolgreich = this.marktplatz.kaufeGebaeude(was, gold, freiesLand);
+									if( erfolgreich ) {
+										Anzeige.zeigeStringAn( "Gebäudekauf erfolgreich." );
+									}
+									else {
+										Anzeige.zeigeStringAn( "Nicht genügend Gold." );
+									}	
 								}
-								else {
-									Anzeige.zeigeStringAn( "Nicht genügend Gold." );
-								}								
 							}
 							break;
 						case 2: 	// Gebäude zerstören
@@ -220,6 +225,42 @@ public class EingabeController
 				case 4:
 					Anzeige.zeigeMenuAn( aktiverSpieler, Handelswarenmenu.getInstance() );
 					
+					int auswahl4 = select(2);
+					switch ( auswahl4 ) {
+					case 0:
+						// zurück zur Spielerhauptmenümaske
+						break;
+					case 1: 		// Handelsware kaufen
+						int gold = aktiverSpieler.getGold();
+						if (gold < 1 ) {
+							Anzeige.zeigeStringAn("Kein Gold keine Handelsware");
+						} else {
+							Anzeige.zeigeMenuAn(aktiverSpieler, Handelswarenuntermenu.getInstance());
+							int welcheHandelsware = select (3);		
+							
+							if (welcheHandelsware == 0) {
+								break;   // Spieler hat 0 eingegeben -> Abbruch
+								
+							} else {
+								
+								int anzHandelswarenKauf = select( Integer.MAX_VALUE );
+								
+								boolean erfolgreich = this.marktplatz.handelswareKaufen(welcheHandelsware, anzHandelswarenKauf, gold);
+								if( erfolgreich ) {
+									Anzeige.zeigeStringAn( "Handelsware gekauft" );
+								}
+								else {
+									Anzeige.zeigeStringAn( "Nicht genügend Gold." );
+								}
+							
+							}
+						}
+					case 2: 	// Handelsware verkaufen
+						
+						break;
+					}
+				
+					
 					break;
 				case 5:
 					Anzeige.zeigeMenuAn( aktiverSpieler, Sabotagemenu.getInstance() );
@@ -227,7 +268,7 @@ public class EingabeController
 					break;
 				case 6:
 					Anzeige.zeigeMenuAn( aktiverSpieler, Aktionsmenu.getInstance() );
-					
+						
 					break;
 				case 7:
 					Anzeige.zeigeStringAn( "Hier Chat" );

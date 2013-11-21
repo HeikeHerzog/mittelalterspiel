@@ -176,7 +176,17 @@ public class Spieler
 	}
 	
 	public void saldiereHandelsware(int auswahl, int menge) {
-		
+		switch (auswahl) {
+		case 1:		// Korn
+			this.korn += menge;
+			break;
+		case 2: 	// Mehl	
+			this.mehl += menge;
+			break;
+		case 3:		// Dünger
+			this.duenger += menge;
+			break;
+		}
 	}
 	
 	public void saldiereKorn(int gesMenge, int mahlMenge) {
