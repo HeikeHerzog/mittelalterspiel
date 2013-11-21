@@ -172,7 +172,7 @@ public class Spieler
 	
 	
 	public void saldiereSoldaten(int anzahl) {
-		
+		this.soldaten += anzahl;
 	}
 	
 	public void saldiereHandelsware(int auswahl, int menge) {

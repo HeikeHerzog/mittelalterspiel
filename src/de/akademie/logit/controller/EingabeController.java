@@ -4,11 +4,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import de.akademie.logit.model.Land;
 import de.akademie.logit.model.Marktplatz;
 import de.akademie.logit.model.Spieler;
 import de.akademie.logit.view.Aktionsmenu;
 import de.akademie.logit.view.Anzeige;
 import de.akademie.logit.view.Gebaeudemenu;
+import de.akademie.logit.view.Gebaeudeuntermenu;
 import de.akademie.logit.view.Handelswarenmenu;
 import de.akademie.logit.view.Landmenu;
 import de.akademie.logit.view.Sabotagemenu;
@@ -128,12 +130,91 @@ public class EingabeController
 							break;
 					}
 					break;
-				case 2:
+				case 2:	
 					Anzeige.zeigeMenuAn( aktiverSpieler, Gebaeudemenu.getInstance() );
+					
+					int auswahl2 = select( 2 );
+					   // [0..2]
+						switch ( auswahl2 ) {
+						case 0:
+							// zurück zur Spielerhauptmenümaske
+							break;
+						case 1: 		// Gebäude kaufen
+							int gold = aktiverSpieler.getGold();
+							Land freiesLand = aktiverSpieler.findeFreiesLand();
+							if (gold < 1 || freiesLand==null) {
+								Anzeige.zeigeStringAn("Kein Gold oder kein freies Land vorhanden");
+							} else if (gold > 0 && freiesLand!=null) {
+								Anzeige.zeigeMenuAn(aktiverSpieler, Gebaeudeuntermenu.getInstance());
+								int was = select(3);
+								
+								boolean erfolgreich = this.marktplatz.kaufeGebaeude(was, gold, freiesLand);
+								if( erfolgreich ) {
+									Anzeige.zeigeStringAn( "Gebäudekauf erfolgreich." );
+								}
+								else {
+									Anzeige.zeigeStringAn( "Nicht genügend Gold." );
+								}								
+							}
+							break;
+						case 2: 	// Gebäude zerstören
+							Anzeige.zeigeMenuAn(aktiverSpieler, Gebaeudeuntermenu.getInstance());
+							int was  = select(3);
+							boolean erfolgreich = this.marktplatz.zerstoereGebaeude(was);
+							if (erfolgreich) {
+								Anzeige.zeigeStringAn("Gebäude zerstört");	
+							} else {
+								Anzeige.zeigeStringAn("Gebäude nicht zerstört");
+							}
+							
+							break;
+						
+						
+						}
 					
 					break;
 				case 3:
 					Anzeige.zeigeMenuAn( aktiverSpieler, Soldatenmenu.getInstance() );
+					
+					int auswahl3 = select(2);
+					switch ( auswahl3 ) {
+					case 0:
+						// zurück zur Spielerhauptmenümaske
+						break;
+					case 1: 		// Soldaten kaufen
+						int gold = aktiverSpieler.getGold();
+						if (gold < 1 ) {
+							Anzeige.zeigeStringAn("Kein Gold keine Soldaten");
+						} else {
+							
+							
+							int anzSoldatenKauf = select( Integer.MAX_VALUE );
+							boolean erfolgreich = this.marktplatz.kaufeSoldaten(anzSoldatenKauf, gold);
+							
+							if( erfolgreich )
+							{
+								Anzeige.zeigeStringAn( "Soldaten eingestellt." );
+							}
+							else
+							{
+								Anzeige.zeigeStringAn( "Nicht genügend Gold." );
+							}
+						}
+						
+						break;
+					case 2: 	// Soldaten entlassen
+						
+						int anzSoldatenEntlassen = select( Integer.MAX_VALUE );
+						int anzSoldaten = aktiverSpieler.getSoldaten();
+						if (anzSoldatenEntlassen <= anzSoldaten) {
+							aktiverSpieler.saldiereSoldaten(anzSoldatenEntlassen * (-1));
+							Anzeige.zeigeStringAn("Soldaten entlassen");
+						} else {
+							Anzeige.zeigeStringAn("Nicht genügend Soldaten");
+						}
+						
+						
+					}
 					
 					break;
 				case 4:
