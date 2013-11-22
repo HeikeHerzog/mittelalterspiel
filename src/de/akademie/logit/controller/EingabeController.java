@@ -56,7 +56,7 @@ public class EingabeController
 				break;
 
 			default:
-				Marktplatz marktplatz = new Marktplatz();
+				Marktplatz marktplatz = Marktplatz.getInstance();
 				setMarktplatz( marktplatz );
 
 				// erfassen der Spieler

@@ -5,13 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class Marktplatz
+public final class Marktplatz
 {
+	private static Marktplatz marktplatz;
 
 	private List<Spieler> spieler = new ArrayList<Spieler>();
 	private Spieler startSpieler;
 	private Spieler aktiverSpieler;
-	private int soldaten;
+	private int soldaten ;
 	private int soldatenPreis=5;
 	private int soldatenSold=3;
 	private static int rundenzaehler;
@@ -27,11 +28,16 @@ public class Marktplatz
 	private int preisLand = 20;
 	
 	
-	public Marktplatz() {
-		
+	private Marktplatz()
+	{}
+
+	public static synchronized Marktplatz getInstance()
+	{
+		if ( marktplatz == null )
+			marktplatz = new Marktplatz();
+		return marktplatz;
 	}
-	
-		
+
 	public void fuegeSpielerHinzu(Spieler _spieler) {
 		this.spieler.add(_spieler);
 	}
@@ -269,6 +275,72 @@ public class Marktplatz
 	// am Montag klären...
 	public int getRundenzaehler() {
 		return rundenzaehler;
+	}
+
+
+	public List<Spieler> getSpieler()
+	{
+		return this.spieler;
+	}
+
+
+	public void setSpieler( List<Spieler> spieler )
+	{
+		this.spieler = spieler;
+	}
+
+
+	public int getSoldatenPreis()
+	{
+		return this.soldatenPreis;
+	}
+
+
+	public int getSoldatenSold()
+	{
+		return this.soldatenSold;
+	}
+
+
+	public int getPreisKorn()
+	{
+		return this.preisKorn;
+	}
+
+
+	public int getMengeKornEnde()
+	{
+		return this.mengeKornEnde;
+	}
+
+
+	public int getPreisMehl()
+	{
+		return this.preisMehl;
+	}
+
+
+	public int getMengeMehlEnde()
+	{
+		return this.mengeMehlEnde;
+	}
+
+
+	public int getPreisDuenger()
+	{
+		return this.preisDuenger;
+	}
+
+
+	public int getPreisGebaeude()
+	{
+		return this.preisGebaeude;
+	}
+
+
+	public int getPreisLand()
+	{
+		return this.preisLand;
 	}
 	
 }

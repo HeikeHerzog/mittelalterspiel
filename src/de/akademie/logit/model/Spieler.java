@@ -37,7 +37,7 @@ public class Spieler
 		// erste Stufe: Bauer
 		setNextTitel();
 
-		this.marktplatz = new Marktplatz();
+		this.marktplatz = Marktplatz.getInstance();
 
       // initial hat jeder Spieler 3 Land mit je einem Gebäude
 		Land land = new Land();
