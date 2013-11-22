@@ -83,10 +83,12 @@ public class Marktplatz
 	public boolean zerstoereGebaeude(int auswahl) {
 		boolean gefunden = false;
 		gefunden = this.aktiverSpieler.zerstöreGesuchtesGebaeude(auswahl);
-		
+		System.out.println("Rückgabewert von zerstöreGesuchtesGebäude" + gefunden);
 		if (gefunden) {
 			return true;
-		} else return false;
+		} else {
+			return false;
+		}
 	}
 	
 	

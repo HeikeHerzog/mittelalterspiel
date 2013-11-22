@@ -268,7 +268,57 @@ public class EingabeController
 					break;
 				case 6:
 					Anzeige.zeigeMenuAn( aktiverSpieler, Aktionsmenu.getInstance() );
-						
+					
+					int auswahl6 = select(4);
+					switch ( auswahl6 ) {
+						case 0:   
+							// zurück zum Hauptmenu
+							break;
+						case 1: 	// Steuersatz ändern
+							
+							int neuerSteuersatz = select( 100 );
+							aktiverSpieler.setSteuersatz(neuerSteuersatz);
+							
+							break;
+						case 2: 	// Titel erwerben
+							
+							boolean nochKeinenTitelErworben = aktiverSpieler.getTitelflag();
+							if (!nochKeinenTitelErworben){
+								
+							}
+							
+							
+							
+							break;
+						case 3: 	//Essensrationen ändern
+							Anzeige.zeigeStringAn("Essensration eingeben: 1=halb, 2=voll, 3=doppelt");
+							int neueEssensration = select(3);
+							aktiverSpieler.setEssensration(neueEssensration);
+							Anzeige.zeigeStringAn("Essensration wurde geändert");
+							
+							break;
+						case 4:		// Korn mahlen
+							int muehleVorhanden = aktiverSpieler.zaehleGebaeude(2);
+							
+							if (muehleVorhanden > 0) {
+								int wievielKornMahlen = select (900000000);
+								int kornVomSpieler = aktiverSpieler.getKorn();
+								if (kornVomSpieler >= wievielKornMahlen) {
+									// genug Korn zum Mahlen vorhanden
+									aktiverSpieler.saldiereKorn(wievielKornMahlen);
+									aktiverSpieler.setMehl(wievielKornMahlen);
+									Anzeige.zeigeStringAn("Korn mahlen erfolgreich");
+								} else {
+									Anzeige.zeigeStringAn("Nicht genug Korn");
+								}
+							} else {
+								Anzeige.zeigeStringAn("Keine Mühle vorhanden");
+							}
+							break;
+							
+						}
+					
+					
 					break;
 				case 7:
 					Anzeige.zeigeStringAn( "Hier Chat" );

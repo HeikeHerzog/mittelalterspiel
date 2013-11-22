@@ -204,8 +204,9 @@ public class Spieler
 		}
 	}
 	
-	public void saldiereKorn(int gesMenge, int mahlMenge) {
-		
+	// diese Methode nur fürs Korn mahlen verwenden
+	public void saldiereKorn(int mahlMenge) {
+		this.korn -= mahlMenge;
 		
 		
 	}
@@ -410,20 +411,32 @@ public class Spieler
 		for (int i = 0; i < this.laendereien.size(); i++) {
 			switch (auswahl) {
 			
-			case 1: 	// Felder zaehlen
-				if (this.laendereien.get(i).getBezeichnung() == "Feld") {
+			case 1: 	// Felder zaehlen  - wenn kein Gebäude drauf steht, nächstes Land aus der Liste nehmen
+				if ( this.laendereien.get( i ).getGebaeude() == null ) {
+					break;
+				}				
+				
+				if (this.laendereien.get(i).getGebaeude().getBezeichnung() == "Feld") {
 					anzahl++;
 				}
 				break;
 				
 			case 2: 	//Muehlen zaehlen
-				if (this.laendereien.get(i).getBezeichnung() == "Mühle") {
+				if ( this.laendereien.get( i ).getGebaeude() == null ) {
+					break;
+				}
+				
+				if (this.laendereien.get(i).getGebaeude().getBezeichnung() == "Mühle") {
 					anzahl++;
 				}
 				break;
 				
 			case 3: 	//Kornkammern zaehlen
-				if (this.laendereien.get(i).getBezeichnung() == "Kornkammer") {
+				if ( this.laendereien.get( i ).getGebaeude() == null ) {
+					break;
+				}
+				
+				if (this.laendereien.get(i).getGebaeude().getBezeichnung() == "Kornkammer") {
 					anzahl++;
 				}
 				break;
