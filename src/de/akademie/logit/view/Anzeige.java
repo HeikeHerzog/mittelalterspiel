@@ -20,8 +20,8 @@ public class Anzeige
 
 	public static void zeigeMenuAn( Spieler spieler, Menu menu )
 	{
-		System.out.println( "Spielerinfo" );
-		System.out.println( "===========" );
+		System.out.println( "Spielerinfo\t\t\t\t\t\t\tMarktplatzinfo" );
+		System.out.println( "====================================================================================================" );
 		new Infobereich( spieler ).anzeigenInfo();
 		System.out.println();
 		menu.printText();

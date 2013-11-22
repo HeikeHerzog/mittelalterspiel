@@ -292,8 +292,8 @@ public class Spieler
 		String ration = "";
 
 		if ( this.essensration == 1 ) ration = "halb";
-		if ( this.essensration == 1 ) ration = "voll";
-		if ( this.essensration == 1 ) ration = "doppelt";
+		if ( this.essensration == 2 ) ration = "voll";
+		if ( this.essensration == 4 ) ration = "doppelt";
 
 		return ration;
 	}

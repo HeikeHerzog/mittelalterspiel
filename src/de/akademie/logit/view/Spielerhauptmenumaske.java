@@ -17,7 +17,7 @@ public final class Spielerhauptmenumaske extends Menu
 		addText( "\t2\tMenü Gebäude" );
 		addText( "\t3\tMenü Soldaten" );
 		addText( "\t4\tMenü Handelsware" );
-		addText( "\t5\tMenü Sabotege" );
+		addText( "\t5\tMenü Sabotage" );
 		addText( "\t6\tMenü Aktionen" );
 		addText( "\t7\tChat" );
 		addText( "\t8\tSpielzug beenden" );
