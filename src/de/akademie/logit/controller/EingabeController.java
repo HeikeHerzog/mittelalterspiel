@@ -13,6 +13,7 @@ import de.akademie.logit.view.Gebaeudemenu;
 import de.akademie.logit.view.Gebaeudeuntermenu;
 import de.akademie.logit.view.Handelswarenmenu;
 import de.akademie.logit.view.Handelswarenuntermenu;
+import de.akademie.logit.view.Handelswarenverkaufsmenu;
 import de.akademie.logit.view.Landmenu;
 import de.akademie.logit.view.Sabotagemenu;
 import de.akademie.logit.view.Soldatenmenu;
@@ -56,7 +57,7 @@ public class EingabeController
 				break;
 
 			default:
-				Marktplatz marktplatz = new Marktplatz();
+				Marktplatz marktplatz = Marktplatz.getInstance();
 				setMarktplatz( marktplatz );
 
 				// erfassen der Spieler
@@ -255,13 +256,32 @@ public class EingabeController
 							
 							}
 						}
-					case 2: 	// Handelsware verkaufen
 						
-						break;
+					case 2: 	// Handelsware verkaufen
+						int spielergold = aktiverSpieler.getGold();
+						
+						Anzeige.zeigeMenuAn(aktiverSpieler, Handelswarenverkaufsmenu.getInstance());
+						int welchehandelsWare = select (2);
+						
+						if (welchehandelsWare == 0) {
+							break; // Spieler hat 0 eingegeben -> Abbruch
+						}
+						else {
+							
+							int anzHandelswarenkauf = select(Integer.MAX_VALUE);
+							
+							boolean erfolgreich = this.marktplatz.handelswareVerkaufen(welchehandelsWare, anzHandelswarenkauf, spielergold);
+							if (erfolgreich) {
+								Anzeige.zeigeStringAn("Handelsware verkauft!");
+							}
+							else {
+								Anzeige.zeigeStringAn("Nicht genügend von dieser Ware, um die gewünschte Menge zu verkaufen!");
+							}
+						}
+						
 					}
-				
-					
-					break;
+						
+						
 				case 5:
 					Anzeige.zeigeMenuAn( aktiverSpieler, Sabotagemenu.getInstance() );
 					
