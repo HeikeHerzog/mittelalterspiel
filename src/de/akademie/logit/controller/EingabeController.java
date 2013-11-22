@@ -13,6 +13,7 @@ import de.akademie.logit.view.Gebaeudemenu;
 import de.akademie.logit.view.Gebaeudeuntermenu;
 import de.akademie.logit.view.Handelswarenmenu;
 import de.akademie.logit.view.Handelswarenuntermenu;
+import de.akademie.logit.view.Handelswarenverkaufsmenu;
 import de.akademie.logit.view.Landmenu;
 import de.akademie.logit.view.Sabotagemenu;
 import de.akademie.logit.view.Soldatenmenu;
@@ -255,20 +256,89 @@ public class EingabeController
 							
 							}
 						}
-					case 2: 	// Handelsware verkaufen
 						
-						break;
+					case 2: 	// Handelsware verkaufen
+						int spielergold = aktiverSpieler.getGold();
+						
+						Anzeige.zeigeMenuAn(aktiverSpieler, Handelswarenverkaufsmenu.getInstance());
+						int welchehandelsWare = select (2);
+						
+						if (welchehandelsWare == 0) {
+							break; // Spieler hat 0 eingegeben -> Abbruch
+						}
+						else {
+							
+							int anzHandelswarenkauf = select(Integer.MAX_VALUE);
+							
+							boolean erfolgreich = this.marktplatz.handelswareVerkaufen(welchehandelsWare, anzHandelswarenkauf, spielergold);
+							if (erfolgreich) {
+								Anzeige.zeigeStringAn("Handelsware verkauft!");
+							}
+							else {
+								Anzeige.zeigeStringAn("Nicht genügend von dieser Ware, um die gewünschte Menge zu verkaufen!");
+							}
+						}
+						
 					}
-				
-					
-					break;
+						
+						
 				case 5:
 					Anzeige.zeigeMenuAn( aktiverSpieler, Sabotagemenu.getInstance() );
 					
 					break;
 				case 6:
 					Anzeige.zeigeMenuAn( aktiverSpieler, Aktionsmenu.getInstance() );
-						
+					
+					int auswahl6 = select(4);
+					switch ( auswahl6 ) {
+						case 0:   
+							// zurück zum Hauptmenu
+							break;
+						case 1: 	// Steuersatz ändern
+							
+							int neuerSteuersatz = select( 100 );
+							aktiverSpieler.setSteuersatz(neuerSteuersatz);
+							
+							break;
+						case 2: 	// Titel erwerben
+							
+							boolean nochKeinenTitelErworben = aktiverSpieler.getTitelflag();
+							if (!nochKeinenTitelErworben){
+								
+							}
+							
+							
+							
+							break;
+						case 3: 	//Essensrationen ändern
+							Anzeige.zeigeStringAn("Essensration eingeben: 1=halb, 2=voll, 3=doppelt");
+							int neueEssensration = select(3);
+							aktiverSpieler.setEssensration(neueEssensration);
+							Anzeige.zeigeStringAn("Essensration wurde geändert");
+							
+							break;
+						case 4:		// Korn mahlen
+							int muehleVorhanden = aktiverSpieler.zaehleGebaeude(2);
+							
+							if (muehleVorhanden > 0) {
+								int wievielKornMahlen = select (900000000);
+								int kornVomSpieler = aktiverSpieler.getKorn();
+								if (kornVomSpieler >= wievielKornMahlen) {
+									// genug Korn zum Mahlen vorhanden
+									aktiverSpieler.saldiereKorn(wievielKornMahlen);
+									aktiverSpieler.setMehl(wievielKornMahlen);
+									Anzeige.zeigeStringAn("Korn mahlen erfolgreich");
+								} else {
+									Anzeige.zeigeStringAn("Nicht genug Korn");
+								}
+							} else {
+								Anzeige.zeigeStringAn("Keine Mühle vorhanden");
+							}
+							break;
+							
+						}
+					
+					
 					break;
 				case 7:
 					Anzeige.zeigeStringAn( "Hier Chat" );
