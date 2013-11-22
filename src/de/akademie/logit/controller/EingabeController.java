@@ -256,6 +256,7 @@ public class EingabeController
 							
 							}
 						}
+						break;
 						
 					case 2: 	// Handelsware verkaufen
 						int spielergold = aktiverSpieler.getGold();
@@ -280,6 +281,7 @@ public class EingabeController
 						}
 						
 					}
+					break;
 						
 						
 				case 5:
