@@ -15,7 +15,7 @@ public final class Marktplatz
 	private int soldaten ;
 	private int soldatenPreis=5;
 	private int soldatenSold=3;
-	private static int rundenzaehler;
+	private static int rundenzaehler = 1;
 	private HashMap<Integer, Spieler>opfermap;
 	private int preisKorn = 1;
 	private int mengeKornAnfang = 1000;
@@ -264,14 +264,15 @@ public final class Marktplatz
 		}
 				
 	}
-	
-	
-	public void incRundenzaehler() {
-		if (aktiverSpieler.equals(startSpieler)){
+
+	public void incRundenzaehler()
+	{
+		if (aktiverSpieler.equals(startSpieler))
+		{
 			rundenzaehler += 1;
 		}
 	}
-	
+
 	// am Montag klären...
 	public int getRundenzaehler() {
 		return rundenzaehler;

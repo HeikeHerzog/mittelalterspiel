@@ -285,7 +285,17 @@ public class Spieler
 	public int getEssensration() {
 		return this.essensration;
 	}
-	
+
+	public String getEssensrationText()
+	{
+		String ration = "";
+
+		if ( this.essensration == 1 ) ration = "halb";
+		if ( this.essensration == 1 ) ration = "voll";
+		if ( this.essensration == 1 ) ration = "doppelt";
+
+		return ration;
+	}
 	
 	public void setMehl(int menge) {
 		this.mehl = menge;

@@ -334,7 +334,7 @@ public class EingabeController
 
 	public void spielzugBeenden()
 	{
-
+		this.marktplatz.incRundenzaehler();
 	}
 
 	public void spielBeenden()
