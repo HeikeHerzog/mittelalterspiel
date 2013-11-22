@@ -29,6 +29,8 @@ public class EingabeController
 {
 	private Marktplatz marktplatz;
 	private SabotageaktController sabotageakt;
+	private EreignisController ereignisController;
+	private Spieler aktiverSpieler;
 	int anzSpieler;
 
 	public EingabeController()
@@ -58,8 +60,7 @@ public class EingabeController
 				break;
 
 			default:
-				Marktplatz marktplatz = Marktplatz.getInstance();
-				setMarktplatz( marktplatz );
+				this.marktplatz = Marktplatz.getInstance();
 
 				// erfassen der Spieler
 				String spielerName = "";
@@ -88,8 +89,8 @@ public class EingabeController
 		boolean spielen = true;
 		while( spielen )
 		{
-			Spieler aktiverSpieler = this.marktplatz.getAktivenSpieler();
-			EreignisController ereignisController = new EreignisController( aktiverSpieler );
+			this.aktiverSpieler = this.marktplatz.getAktivenSpieler();
+			this.ereignisController = new EreignisController( aktiverSpieler );
 			Anzeige.zeigeMenuAn( aktiverSpieler, Spielerhauptmenumaske.getInstance() );
 
 			// [0..8]
@@ -335,7 +336,7 @@ public class EingabeController
 							int muehleVorhanden = aktiverSpieler.zaehleGebaeude(2);
 							
 							if (muehleVorhanden > 0) {
-								int wievielKornMahlen = select (900000000);
+								int wievielKornMahlen = select (Integer.MAX_VALUE);
 								int kornVomSpieler = aktiverSpieler.getKorn();
 								if (kornVomSpieler >= wievielKornMahlen) {
 									// genug Korn zum Mahlen vorhanden
@@ -355,12 +356,10 @@ public class EingabeController
 					
 					break;
 				case 7:
-					Anzeige.zeigeStringAn( "Hier Chat" );
+					Anzeige.zeigeStringAn( "Heute kein Chat" );
 					
 					break;
 				case 8:
-					aktiverSpieler.setSabotage( false );
-					aktiverSpieler.setTitelflag( false );
 					spielzugBeenden();
 					break;
 				default:
@@ -406,11 +405,6 @@ public class EingabeController
 		}
 	}
 
-	public void setMarktplatz( Marktplatz marktplatz )
-	{
-		this.marktplatz = marktplatz;
-	}
-
 	public Marktplatz getMarktplatz()
 	{
 		return this.marktplatz;
@@ -418,7 +412,10 @@ public class EingabeController
 
 	public void spielzugBeenden()
 	{
+		this.aktiverSpieler.setSabotage( false );
+		this.aktiverSpieler.setTitelflag( false );
 		this.marktplatz.incRundenzaehler();
+		this.ereignisController.ereignisTrigger();
 	}
 
 	public void spielBeenden()
