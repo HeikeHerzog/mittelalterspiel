@@ -291,17 +291,19 @@ public class EingabeController
 						Anzeige.zeigeStringAn("Diese Runde ist keine Sabotage möglich!");
 					}
 					else if (!this.aktiverSpieler.isSaboteur()) {
+						
+						Anzeige.zeigeStringAn("Wer soll sabotiert werden?");
+						String opferliste = this.marktplatz.holeSpielernamen();
+						Anzeige.zeigeStringAn(opferliste);
+						int auswahl5 = select(this.anzSpieler-1);
+						
+						
+						
+						
+									
 						Anzeige.zeigeMenuAn( aktiverSpieler, Sabotagemenu.getInstance() );
 					
-						int welcheSabotage = select(4);
 						
-						switch (welcheSabotage) {
-						
-							case 0:
-								break; // Spieler hat auf Abbruch gedrückt
-							case 1:
-								
-							}
 						
 						
 						
