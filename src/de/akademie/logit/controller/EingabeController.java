@@ -416,8 +416,11 @@ public class EingabeController
 		this.aktiverSpieler.setTitelflag( false );
 		this.marktplatz.incRundenzaehler();
 		this.ereignisController.ereignisTrigger();
-		//this.aktiverSpieler.soldatenVersorgen(sold);
+		this.aktiverSpieler.soldatenVersorgen(marktplatz.getSold()); // Soldaten versorgen (füttern und bezahlen)
 		this.aktiverSpieler.bevoelkerungFuettern();
+		this.aktiverSpieler.kornErntenUndVerteilen();
+		this.aktiverSpieler.zufriedenheitAnpassen();
+		this.marktplatz.preiseAnpassen();
 	}
 
 	public void spielBeenden()
