@@ -58,9 +58,30 @@ public class Spieler
 	}
 	
 	// TODO: Titel aktuellerTitel durch getTitel() ersetzen
-	public boolean titelErwerben(Titel aktuellerTitel, int gold, ArrayList<Land> laendereien) {
+//	public boolean titelErwerben(Titel aktuellerTitel, int gold, ArrayList<Land> laendereien) {
+//		return false;
+//	}
+	
+	
+	
+	public boolean titelErwerben(int indexTitel, int gold, ArrayList<Land> laendereien) {
+		int titelKostet = titel.getGold() * indexTitel; 	// Titelkosten
+		int benoetigteLaender = titel.getLandmin() * indexTitel;	// man benötigt für jeden Titel bestimmte Anzahl an Ländern
+		
+		if (titelKostet <= gold && benoetigteLaender <= laendereien.size() ) {
+			// genug Gold und genug Land für den nächsten Titel
+			setNextTitel();
+			//this.gold 
+			this.saldiereGold(titelKostet * (-1));
+			this.setTitelflag(true); 
+			return true;
+		}
+		
+		// nicht gnügend Gold oder Land
 		return false;
 	}
+	
+	
 	
 	
 	public void spielzugBeenden() {
@@ -255,6 +276,11 @@ public class Spieler
 		this.indexTitel = this.indexTitel + 1;
 	}
 
+	public int getIndexTitel()  {
+		return this.indexTitel;
+	}
+	
+	
 	public String getTitel()
 	{
 		return this.titel.getTitel( this.indexTitel ) ;
