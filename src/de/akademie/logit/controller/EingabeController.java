@@ -493,7 +493,6 @@ public class EingabeController
 	{
 		this.aktiverSpieler.setSabotage( false );
 		this.aktiverSpieler.setTitelflag( false );
-		this.marktplatz.incRundenzaehler();
 		this.ereignisController.ereignisTrigger();
 		this.aktiverSpieler.soldatenVersorgen( this.marktplatz.getSold() ); // Soldaten
 																								  // versorgen
@@ -505,6 +504,7 @@ public class EingabeController
 		this.aktiverSpieler.zufriedenheitAnpassen();
 		this.marktplatz.preiseAnpassen();
 		this.marktplatz.setNaechstenSpieler();
+		this.marktplatz.incRundenzaehler();
 	}
 
 	public void spielBeenden()

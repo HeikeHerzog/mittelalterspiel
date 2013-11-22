@@ -1,0 +1,4 @@
+Klasse               Methode                             Bemerkung
+==================================================================
+
+Spieler              public void spielzugBeenden()       ist leer

@@ -24,7 +24,7 @@ public class Spieler
 	private boolean sabotageflag=true;
 	private boolean sabotageOpfer=false;
 	private boolean titelflag=false;
-	private int bevoelkerungszufriedenheit=0;
+	private int bevoelkerungszufriedenheit = 10;
 	
 	
 	public Spieler() {
@@ -540,9 +540,63 @@ public class Spieler
 		
 	}
 	
-	
-	public void zufriedenheitAnpassen() {
+	/**
+	 * 
+    * Zufriedenheit anpassen mit den Werten von:
+    * den aktuellen Soldaten
+    * der Landgröße
+    * der Bevölkerungsanzahl
+    * dem Steuersatz
+    * 
+    * Wenn Anzahl Soldaten oder Landgröße == 0 ist,
+    * dann sinkt die Zufriedenheit
+    * sonst steigt sie.
+    * Wenn Volk == 0 dann Zufriedenheit = 0
+    * Mehl wird nicht berücksichtigt, da es zu diesem Zeitpunkt bereits weg ist.
+    * 
+    * Berechnet wird das mit:
+    * N(t) = N(0) * (1+p) ** t
+    * siehe 
+    * http://de.wikipedia.org/wiki/Zinseszins#Exponentielles_Wachstum
+	 */
+	public void zufriedenheitAnpassen()
+	{
+      // N(0)
+		double indexAlt = (double) this.bevoelkerungszufriedenheit;
+		// N(t)
+		int indexNeu = 0;
+		// der Rundenzähler als Zeit
+		double t = (double) this.marktplatz.getRundenzaehler() / 10.0d;
+		// p wird durch die fünf Parameter errechnet
+		double p1 = (double) getSoldaten() / 10.0d;
+		double p2 = (double) this.laendereien.size() / 10.0d;
+		double p3 = (double) getBevoelkerungsanzahl() / 10.0d;
+		double p4 = (double) getSteuersatz() / 10.0d;
+
+		double x = 1.0;
+		if ( p1 == 0.0d || p2 == 0.0d )
+		{
+			x = -1.0d;
+		}
 		
+		if ( p3 == 0.0d )
+		{
+			x = 0.0d;
+		}
+		
+		double p = (p1 + p2 + p3 + p4) * x;
+		
+		// wenn indexAlt == 0 und p > 0
+		// dann indexAlt auf 1.0 setzen
+		// da indexNeu sonst auf 0 bleibt
+		if ( indexAlt == 0.0d && p > 0.0d )
+		{
+			indexAlt = 1.0d;
+		}
+
+		indexNeu = (int) ( indexAlt * Math.pow( ( 1 + p), t) );
+
+		this.bevoelkerungszufriedenheit = indexNeu;
 	}
 	
 	public void setTitelflag (boolean _titelflag) {
