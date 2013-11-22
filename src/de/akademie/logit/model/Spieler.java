@@ -133,41 +133,56 @@ public class Spieler
 	}
 	
 	
-	public boolean zerstöreGesuchtesGebaeude(int auswahl) {
-		
-		for (int i = 0; i < this.laendereien.size(); i++) {
-			
-			switch (auswahl) {
-			
-			case 1: 	// eigenes Feld finden und zerstören
-				
-				if (this.laendereien.get(i).getBezeichnung().equals ("Feld")) {
-					this.laendereien.get(i).setGebaeude(null);
-					return true;
-					
-				}
-				break;
-				
-			case 2: 	// eigene Muehle finden und zerstören
-				if (this.laendereien.get(i).getBezeichnung().equals ("Mühle")) {
-					this.laendereien.get(i).setGebaeude(null);
-					return true;
-				}
-				break;
-				
-			case 3: 	// eigene Kornkammer finden und zerstören
-				if (this.laendereien.get(i).getBezeichnung().equals ("Kornkammer")) {
-					this.laendereien.get(i).setGebaeude(null);
-					return true;
-				}
-				break;
-		
-			default:
-				break;
+	public boolean zerstöreGesuchtesGebaeude( int auswahl )
+	{
+		boolean retVal = false;
+
+		for ( int i = 0; i < this.laendereien.size(); i++ )
+		{
+			switch ( auswahl )
+			{
+				case 1: 	// eigenes Feld finden und zerstören
+					if ( this.laendereien.get( i ).getGebaeude() == null )
+					{
+						break;
+					}
+
+					if ( this.laendereien.get( i ).getGebaeude().getBezeichnung().equals ( "Feld" ) )
+					{
+						this.laendereien.get( i ).setGebaeude( null );
+						return retVal = true;
+					}
+					break;
+
+				case 2: 	// eigene Muehle finden und zerstören
+					if ( this.laendereien.get( i ).getGebaeude() == null )
+					{
+						break;
+					}
+
+					if ( this.laendereien.get( i ).getGebaeude().getBezeichnung().equals ( "Mühle" ) )
+					{
+						this.laendereien.get( i ).setGebaeude( null );
+						return retVal = true;
+					}
+					break;
+
+				case 3: 	// eigene Kornkammer finden und zerstören
+					if ( this.laendereien.get( i ).getGebaeude() == null )
+					{
+						break;
+					}
+
+					if ( this.laendereien.get( i ).getGebaeude().getBezeichnung().equals ( "Kornkammer" ) )
+					{
+						this.laendereien.get( i ).setGebaeude( null );
+						return retVal = true;
+					}
+					break;
 			}
-				
 		}
-		return false;
+
+		return retVal;
 	}
 	
 	
