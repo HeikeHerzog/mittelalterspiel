@@ -286,9 +286,28 @@ public class EingabeController
 						
 						
 				case 5:
-					Anzeige.zeigeMenuAn( aktiverSpieler, Sabotagemenu.getInstance() );
+					if (this.aktiverSpieler.isSaboteur()) {
+						Anzeige.zeigeStringAn("Diese Runde ist keine Sabotage möglich!");
+					}
+					else if (!this.aktiverSpieler.isSaboteur()) {
+						Anzeige.zeigeMenuAn( aktiverSpieler, Sabotagemenu.getInstance() );
 					
+						int welcheSabotage = select(4);
+						
+						switch (welcheSabotage) {
+						
+							case 0:
+								break; // Spieler hat auf Abbruch gedrückt
+							case 1:
+								
+							}
+						
+						
+						
+						
+					}
 					break;
+					
 				case 6:
 					Anzeige.zeigeMenuAn( aktiverSpieler, Aktionsmenu.getInstance() );
 					
