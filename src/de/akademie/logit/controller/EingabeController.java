@@ -416,6 +416,8 @@ public class EingabeController
 		this.aktiverSpieler.setTitelflag( false );
 		this.marktplatz.incRundenzaehler();
 		this.ereignisController.ereignisTrigger();
+		//this.aktiverSpieler.soldatenVersorgen(sold);
+		this.aktiverSpieler.bevoelkerungFuettern();
 	}
 
 	public void spielBeenden()
