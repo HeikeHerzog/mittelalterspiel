@@ -1,12 +1,14 @@
 package de.akademie.logit.controller;
 
+import java.util.Random;
+
 import de.akademie.logit.model.Marktplatz;
 import de.akademie.logit.model.Spieler;
 import de.akademie.logit.view.Anzeige;
 
 /**
  * 
- * @author paul
+ * @author paul, heike
  *
  */
 public class SabotageaktController
@@ -29,6 +31,16 @@ public class SabotageaktController
 
 	private boolean goldStehlen()
 	{
+		int angreifererfolg = ermittleAngreiferErfolg();
+		if (angreifererfolg == 0) {
+			return false;
+		}
+		else if (angreifererfolg>0) {
+			int gestohlenesGold = this.opfer.ermittleGoldBetrag(angreifererfolg);
+			this.aktiverSpieler.saldiereGold(gestohlenesGold);
+			this.opfer.saldiereGold(gestohlenesGold*(-1));
+		}
+		
 		return false;
 	}
 
@@ -53,18 +65,57 @@ public class SabotageaktController
 	}
 
 	public int ermittleAngreiferErfolg()
-	{
-		return -1;
+	{	
+		int angreifererfolg = (int)(Math.random()*2)+1;
+		
+		if (angreifererfolg == 0) {
+			this.getSoldateneinsatz();
+			this.aktiverSpieler.saldiereGold(sabotageKosten*(-1));
+			this.aktiverSpieler.soldatenVersorgen(soldateneinsatz);
+			return angreifererfolg;
+		}
+		else {
+			ermittleSabotageAnteil();
+			int verloreneSoldaten = (int)(Math.random()*(this.getSoldateneinsatz()/2))+1;
+			this.aktiverSpieler.saldiereSoldaten(verloreneSoldaten*(-1));
+			
+		}
+		
+		
+		
+		return angreifererfolg;
 	}
+	
 	
 	public int getSoldateneinsatz()
 	{
 		return this.soldateneinsatz;
 	}
 	
+	
 	public int ermittleSabotageAnteil()
-	{
-		return -1;
+		
+	{	int angreifersoldaten = this.getSoldateneinsatz();
+		int opfersoldaten = this.opfer.getSoldaten();
+		int sabotageAnteil = 0;
+		
+		if (opfersoldaten == 0) {
+			sabotageAnteil = 100;
+			
+		}
+		else if (opfersoldaten != 0) {
+			
+			sabotageAnteil = (int) (angreifersoldaten/opfersoldaten);
+			
+			if (sabotageAnteil < 1) {
+				sabotageAnteil = 1;			
+			}
+			else if ( sabotageAnteil > 100) {
+				sabotageAnteil = 100;
+			}
+		}
+	
+		return sabotageAnteil;
 	}
 
 }
