@@ -31,6 +31,16 @@ public class SabotageaktController
 
 	private boolean goldStehlen()
 	{
+		int angreifererfolg = ermittleAngreiferErfolg();
+		if (angreifererfolg == 0) {
+			return false;
+		}
+		else if (angreifererfolg>0) {
+			int gestohlenesGold = this.opfer.ermittleGoldBetrag(angreifererfolg);
+			this.aktiverSpieler.saldiereGold(gestohlenesGold);
+			this.opfer.saldiereGold(gestohlenesGold*(-1));
+		}
+		
 		return false;
 	}
 
@@ -56,7 +66,7 @@ public class SabotageaktController
 
 	public int ermittleAngreiferErfolg()
 	{	
-		int angreifererfolg = (int)(Math.random()*1)+1;
+		int angreifererfolg = (int)(Math.random()*2)+1;
 		
 		if (angreifererfolg == 0) {
 			this.getSoldateneinsatz();
@@ -66,6 +76,8 @@ public class SabotageaktController
 		}
 		else {
 			ermittleSabotageAnteil();
+			int verloreneSoldaten = (int)(Math.random()*(this.getSoldateneinsatz()/2))+1;
+			this.aktiverSpieler.saldiereSoldaten(verloreneSoldaten*(-1));
 			
 		}
 		
