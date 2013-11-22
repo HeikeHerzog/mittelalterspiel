@@ -352,22 +352,33 @@ public class EingabeController
 							aktiverSpieler.setSteuersatz( neuerSteuersatz );
 
 							break;
-						case 2: 	// Titel erwerben
-							
-							boolean nochKeinenTitelErworben = aktiverSpieler.getTitelflag();
-							if (!nochKeinenTitelErworben){
+						case 2: // Titel erwerben
+
+							boolean nochKeinenTitelErworben = aktiverSpieler
+							      .getTitelflag();
+							if ( !nochKeinenTitelErworben )
+							{
 								int indexTitel = aktiverSpieler.getIndexTitel();
 								int gold = aktiverSpieler.getGold();
-								ArrayList<Land> laendereien = aktiverSpieler.getLandListe();
-								boolean erfolgreich = aktiverSpieler.titelErwerben(indexTitel+1, gold, laendereien);
-								if (erfolgreich) {
-									Anzeige.zeigeStringAn("Neuen Titel erworben");
-								} else {
-									Anzeige.zeigeStringAn("Nicht genügend Gold oder Land vorhanden um diesen Titel zu erwerben");
+								ArrayList<Land> laendereien = aktiverSpieler
+								      .getLandListe();
+								boolean erfolgreich = aktiverSpieler.titelErwerben(
+								      indexTitel + 1, gold, laendereien );
+								if ( erfolgreich )
+								{
+									Anzeige.zeigeStringAn( "Neuen Titel erworben" );
 								}
-								
-							} else {
-								Anzeige.zeigeStringAn("In dieser Runde kann kein Titel mehr erworben werden");
+								else
+								{
+									Anzeige
+									      .zeigeStringAn( "Nicht genügend Gold oder Land vorhanden um diesen Titel zu erwerben" );
+								}
+
+							}
+							else
+							{
+								Anzeige
+								      .zeigeStringAn( "In dieser Runde kann kein Titel mehr erworben werden" );
 							}
 							break;
 						case 3: // Essensrationen ändern
@@ -464,11 +475,16 @@ public class EingabeController
 		this.aktiverSpieler.setTitelflag( false );
 		this.marktplatz.incRundenzaehler();
 		this.ereignisController.ereignisTrigger();
-		this.aktiverSpieler.soldatenVersorgen(marktplatz.getSold()); // Soldaten versorgen (füttern und bezahlen)
+		this.aktiverSpieler.soldatenVersorgen( this.marktplatz.getSold() ); // Soldaten
+																								  // versorgen
+																								  // (füttern
+																								  // und
+																								  // bezahlen)
 		this.aktiverSpieler.bevoelkerungFuettern();
 		this.aktiverSpieler.kornErntenUndVerteilen();
 		this.aktiverSpieler.zufriedenheitAnpassen();
 		this.marktplatz.preiseAnpassen();
+		this.marktplatz.setNaechstenSpieler();
 	}
 
 	public void spielBeenden()
