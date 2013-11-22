@@ -3,6 +3,7 @@ package de.akademie.logit.controller;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 import de.akademie.logit.model.Land;
 import de.akademie.logit.model.Marktplatz;
@@ -306,7 +307,18 @@ public class EingabeController
 							
 							boolean nochKeinenTitelErworben = aktiverSpieler.getTitelflag();
 							if (!nochKeinenTitelErworben){
+								int indexTitel = aktiverSpieler.getIndexTitel();
+								int gold = aktiverSpieler.getGold();
+								ArrayList<Land> laendereien = aktiverSpieler.getLandListe();
+								boolean erfolgreich = aktiverSpieler.titelErwerben(indexTitel+1, gold, laendereien);
+								if (erfolgreich) {
+									Anzeige.zeigeStringAn("Neuen Titel erworben");
+								} else {
+									Anzeige.zeigeStringAn("Nicht genügend Gold oder Land vorhanden um diesen Titel zu erwerben");
+								}
 								
+							} else {
+								Anzeige.zeigeStringAn("In dieser Runde kann kein Titel mehr erworben werden");
 							}
 							
 							
