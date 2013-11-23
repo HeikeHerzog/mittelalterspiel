@@ -29,15 +29,18 @@ public class EreignisController
 				break;
 			case 1:
 				maeuseplage();
-				Anzeige.zeigeStringAn("Eine Mäuseplage ist aufgetreten, ein Teil des Korns wurde aufgefressen!");
+				Anzeige
+				      .zeigeStringAn( "Eine Mäuseplage ist aufgetreten, ein Teil des Korns wurde aufgefressen!" );
 				break;
 			case 2:
 				pest();
-				Anzeige.zeigeStringAn("Die Pest ist aufgetreten, ein Teil der Bevoelkerung ist gestorben!");
+				Anzeige
+				      .zeigeStringAn( "Die Pest ist aufgetreten, ein Teil der Bevölkerung ist gestorben!" );
 				break;
 			case 3:
 				guteErnte();
-				Anzeige.zeigeStringAn("Eine gute Ernte mit mehr 50% mehr Korn als ueblich wurde eingefahren!");
+				Anzeige
+				      .zeigeStringAn( "Eine gute Ernte mit 50% mehr Korn als üblich wurde eingefahren!" );
 				break;
 		}
 	}

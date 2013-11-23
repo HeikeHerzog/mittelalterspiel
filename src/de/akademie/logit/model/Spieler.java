@@ -46,7 +46,7 @@ public class Spieler
 		land = new Land();
 		land.setGebaeude( new Muehle() );
 		this.marktplatz.fuegeSpielerLandHinzu( this, land );
-		
+
 		this.soldaten = 0;
 	}
 
@@ -98,7 +98,6 @@ public class Spieler
 
 	public void saldiereGold( int menge )
 	{
-
 		this.gold = this.gold + menge;
 	}
 
@@ -128,13 +127,10 @@ public class Spieler
 
 	public Land findeFreiesLand()
 	{
-
 		for ( int i = 0; i < laendereien.size(); i++ )
 		{
-
 			if ( laendereien.get( i ).getGebaeude() == null )
 			{
-
 				return laendereien.get( i );
 			}
 		}
@@ -241,7 +237,6 @@ public class Spieler
 
 	public boolean isSaboteur()
 	{
-
 		return this.sabotageflag;
 	}
 
@@ -249,9 +244,6 @@ public class Spieler
 	{
 		this.sabotageflag = _sabotageflag;
 	}
-
-	public void sabotageDurchfuehren()
-	{}
 
 	public int getSteuersatz()
 	{
@@ -603,8 +595,9 @@ public class Spieler
 	{
 		return this.bevoelkerungszufriedenheit;
 	}
-	
-	public void setSoldaten(int soldaten) {
+
+	public void setSoldaten( int soldaten )
+	{
 		this.soldaten = soldaten;
 	}
 

@@ -17,7 +17,6 @@ public final class Marktplatz
 	private int soldatenSold = 3;
 	private static int rundenzaehler = 1;
 	private Map<Integer, Spieler> opfermap = new HashMap<Integer, Spieler>();
-	private Spieler opfer;
 	private int preisKorn = 1;
 	private int mengeKornAnfang = 1000;
 	private int mengeKornEnde = 1000;
@@ -294,7 +293,6 @@ public final class Marktplatz
 
 	public void saldiereHandelsware( int auswahl, int menge )
 	{
-
 		if ( auswahl == 1 )
 		{
 			this.mengeKornEnde += menge;
@@ -303,7 +301,6 @@ public final class Marktplatz
 		{
 			this.mengeMehlEnde += menge;
 		}
-
 	}
 
 	public String holeSpielernamen()
@@ -443,11 +440,6 @@ public final class Marktplatz
 	{
 		return this.preisLand;
 	}
-	
-	public void setOpferSpieler(Spieler opfer) {
-		this.opfer = opfer;
-	}
-		
 
 	public Spieler getOpfer( int auswahl )
 	{
