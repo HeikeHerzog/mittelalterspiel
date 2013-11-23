@@ -28,7 +28,7 @@ import de.akademie.logit.view.Spielerhauptmenumaske;
 public class EingabeController
 {
 	private Marktplatz marktplatz;
-	private SabotageaktController sabotageakt = new SabotageaktController();
+	private SabotageaktController sabotageakt;
 	private EreignisController ereignisController;
 	private Spieler aktiverSpieler;
 	int anzSpieler;
@@ -351,9 +351,7 @@ public class EingabeController
 							
 						}
 						else if (auswahl5 != 0) {
-							Spieler opfer = this.marktplatz.getOpfer(auswahl5);
-						
-							
+														
 							Anzeige.zeigeStringAn("Wieviele Soldaten einsetzen?");
 							int anzAngreifendeSoldaten = select( Integer.MAX_VALUE );
 							
@@ -365,22 +363,22 @@ public class EingabeController
 								int gesamtSoldaten = this.aktiverSpieler.getSoldaten();
 								int gold = this.aktiverSpieler.getGold();
 																				
-								if ((anzAngreifendeSoldaten > gesamtSoldaten) || (gold < sabotageakt.getSabotageKosten() )) {
+								if ((anzAngreifendeSoldaten > gesamtSoldaten) || (gold < 10 )) {
 									Anzeige.zeigeStringAn("Nicht genügend Geld oder Soldaten");
 									break;
 								}
 								else {
 									Anzeige.zeigeMenuAn( aktiverSpieler, Sabotagemenu.getInstance() );
-									int auswahl5a = select( 4 );
+									int auswahl5a = select( 3 );
 									
 									if (auswahl5a == 0) {
 										break;
 									}
 									else if (auswahl5a > 0) {
-										SabotageaktController sabotage = new SabotageaktController(opfer, aktiverSpieler, anzAngreifendeSoldaten);
-										boolean erfolgreich = sabotage.sabotiere(auswahl5a);
-										aktiverSpieler.setSabotage(false);
-										opfer.setSabotageOpfer(true);
+										sabotageakt = new SabotageaktController(this.marktplatz.getOpfer(auswahl5a), aktiverSpieler, anzAngreifendeSoldaten);
+										boolean erfolgreich = sabotageakt.sabotiere(auswahl5a);
+										aktiverSpieler.setSabotage(true);
+										this.marktplatz.getOpfer(auswahl5a).setSabotageOpfer(true);
 										
 										if (erfolgreich) {
 											Anzeige.zeigeStringAn("Sabotage erfolgreich!");
