@@ -13,7 +13,6 @@ public final class Marktplatz
 	private int indexSpieler = 0;
 	private Spieler startSpieler;
 	private Spieler aktiverSpieler;
-	// private int soldaten;
 	private int soldatenPreis = 5;
 	private int soldatenSold = 3;
 	private static int rundenzaehler = 1;

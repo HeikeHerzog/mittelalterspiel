@@ -429,6 +429,7 @@ public class EingabeController
 
 							int neuerSteuersatz = select( 100 );
 							aktiverSpieler.setSteuersatz( neuerSteuersatz );
+							Anzeige.zeigeStringAn( "Steuersatz wurde geändert" );
 
 							break;
 						case 2: // Titel erwerben
@@ -542,11 +543,6 @@ public class EingabeController
 			e.printStackTrace();
 			return null;
 		}
-	}
-
-	public Marktplatz getMarktplatz()
-	{
-		return this.marktplatz;
 	}
 
 	public void spielzugBeenden()

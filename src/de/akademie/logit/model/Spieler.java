@@ -2,8 +2,6 @@ package de.akademie.logit.model;
 
 import java.util.ArrayList;
 
-import de.akademie.logit.controller.EreignisController;
-
 public class Spieler
 {
 	private String name;
@@ -20,7 +18,6 @@ public class Spieler
 	private int essensration = 2;
 	private int bevoelkerungsanzahl = 50;
 	private Marktplatz marktplatz;
-	private EreignisController ereignis;
 	private boolean sabotageflag = true;
 	private boolean sabotageOpfer = false;
 	private boolean titelflag = false;
@@ -60,7 +57,7 @@ public class Spieler
 	      ArrayList<Land> laendereien )
 	{
 		// ist bereits König
-		if( this.titel.getTitel( this.indexTitel ).equals("Koenig") )
+		if ( this.titel.getTitel( this.indexTitel ).equals( "Koenig" ) )
 		{
 			return false;
 		}
@@ -319,11 +316,6 @@ public class Spieler
 
 		return ration;
 	}
-
-//	public void setMehl( int menge )
-//	{
-//		this.mehl = menge;
-//	}
 
 	public void setKorn( int menge )
 	{
