@@ -22,7 +22,7 @@ public class Spieler
 	private boolean sabotageOpfer = false;
 	private boolean titelflag = false;
 	private int bevoelkerungszufriedenheit = 10;
-	private String ereignis = "";
+	private String ereignis = "Es ist noch kein Ereignis aufgetreten";
 
 	public Spieler()
 	{}
@@ -572,9 +572,11 @@ public class Spieler
 			indexAlt = 1.0d;
 		}
 
-		indexNeu = (int) ( indexAlt * Math.pow( ( 1 + p ), t ) );
+		double faktor = Math.pow( ( 1 + p ), t );
+		indexNeu = (int) ( indexAlt * faktor );
 
 		this.bevoelkerungszufriedenheit = indexNeu;
+		this.bevoelkerungsanzahl = this.bevoelkerungsanzahl * (int) faktor;
 	}
 
 	public void setTitelflag( boolean _titelflag )
