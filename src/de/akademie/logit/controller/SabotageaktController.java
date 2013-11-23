@@ -111,12 +111,11 @@ public class SabotageaktController
 
 			if ( verloreneSoldaten >= this.opfer.getSoldaten() )
 			{
-				this.opfer.setSoldaten( 0 );
+				this.opfer.saldiereSoldaten( this.opfer.getSoldaten() * (-1) );
 			}
 			else
 			{
-				this.opfer.setSoldaten( this.opfer.getSoldaten()
-				      - this.getSoldateneinsatz() * 2 );
+				this.opfer.saldiereSoldaten( this.opfer.getSoldaten() - this.getSoldateneinsatz() * (-2 ) );
 				this.opfer.zufriedenheitAnpassen();
 			}
 			erfolg = true;
@@ -155,7 +154,7 @@ public class SabotageaktController
 		{
 			this.getSoldateneinsatz();
 			this.aktiverSpieler.saldiereGold( sabotageKosten * (-1) );
-			this.aktiverSpieler.saldiereSoldaten( soldateneinsatz * (-1) );
+			this.aktiverSpieler.saldiereSoldaten( soldateneinsatz * (-1));
 			return angreifererfolg;
 		}
 		else

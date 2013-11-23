@@ -597,12 +597,6 @@ public class Spieler
 		return this.bevoelkerungszufriedenheit;
 	}
 
-	public void setSoldaten( int soldaten )
-	{
-		this.soldaten = soldaten;
-	}
-
-	
 	public String getEreignis() {
 		
 		return this.ereignis;
