@@ -13,7 +13,7 @@ public final class Marktplatz
 	private int indexSpieler = 0;
 	private Spieler startSpieler;
 	private Spieler aktiverSpieler;
-	private int soldaten;
+//	private int soldaten;
 	private int soldatenPreis = 5;
 	private int soldatenSold = 3;
 	private static int rundenzaehler = 1;
@@ -311,7 +311,12 @@ public final class Marktplatz
 	{
 		String namen = new String();
 		List<Spieler> spielerNamen = new ArrayList<Spieler>();
-		spielerNamen = this.spieler;
+
+		for ( Spieler spieler : this.spieler )
+		{
+			spielerNamen.add( spieler );
+		}
+
 		spielerNamen.remove( this.aktiverSpieler );
 
 		for ( int i = 0; i < spielerNamen.size(); i++ )
@@ -334,7 +339,6 @@ public final class Marktplatz
 	// ermittelt
 	public void preiseAnpassen()
 	{
-
 		int unterschiedMehl = this.mengeMehlEnde - this.mengeMehlAnfang;
 		int unterschiedKorn = this.mengeKornEnde - this.mengeKornAnfang;
 
@@ -371,7 +375,6 @@ public final class Marktplatz
 		{
 			this.preisKorn += (int) ( this.preisKorn / 2 );
 		}
-
 	}
 
 	public void incRundenzaehler()
