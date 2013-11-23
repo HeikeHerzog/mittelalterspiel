@@ -293,7 +293,6 @@ public final class Marktplatz
 
 	public void saldiereHandelsware( int auswahl, int menge )
 	{
-
 		if ( auswahl == 1 )
 		{
 			this.mengeKornEnde += menge;
