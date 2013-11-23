@@ -10,7 +10,7 @@ public class Spieler
 	private Titel titel = new Titel();
 	// initialer Titelindex wird im Constructor um eins inc
 	private int indexTitel = -1;
-	private int gold=100;
+	private int gold=10000;
 	private ArrayList<Land> laendereien = new ArrayList<Land>();
 	private int soldaten;
 	private int steuersatz;

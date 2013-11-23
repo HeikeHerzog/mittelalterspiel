@@ -1,7 +1,10 @@
 package de.akademie.logit.controller;
 
+import java.util.ArrayList;
 import java.util.Random;
 
+import de.akademie.logit.model.Gebaeude;
+import de.akademie.logit.model.Land;
 import de.akademie.logit.model.Marktplatz;
 import de.akademie.logit.model.Spieler;
 import de.akademie.logit.view.Anzeige;
@@ -36,22 +39,53 @@ public class SabotageaktController
 
 	private boolean goldStehlen()
 	{
+		boolean erfolg = false;
 		int angreifererfolg = ermittleAngreiferErfolg();
 		if (angreifererfolg == 0) {
-			return false;
+			erfolg = false;
 		}
 		else if (angreifererfolg>0) {
 			int gestohlenesGold = this.opfer.ermittleGoldBetrag(angreifererfolg);
 			this.aktiverSpieler.saldiereGold(gestohlenesGold);
 			this.opfer.saldiereGold(gestohlenesGold*(-1));
+			erfolg = true;
 		}
 		
-		return false;
+		return erfolg;
 	}
 
 	private boolean gebaeudeZerstoeren()
 	{
-		return false;
+		boolean erfolg = false;
+		int angreifererfolg = ermittleAngreiferErfolg();
+		
+		if (angreifererfolg == 0) {
+			erfolg = false;
+		}
+		
+		else if (angreifererfolg>0) {
+			ArrayList<Land> laendereien = this.opfer.getLandListe();
+			int i = 0;
+			
+			while (i < laendereien.size() || i <= angreifererfolg)  {
+				
+				try {
+					
+					if ( laendereien.get( i ).getGebaeude() != null )
+					{
+						laendereien.get(i).setGebaeude(null);
+						i++;
+						erfolg = true;
+					}
+					
+				} catch (Exception e) {
+					i++;
+				}
+			}
+			
+		}
+		
+		return erfolg;
 	}
 
 	private boolean kornVergiften()
@@ -66,7 +100,14 @@ public class SabotageaktController
 
 	public boolean sabotiere( int auswahl )
 	{
-		return false;
+		boolean erfolgreich = false;
+		switch (auswahl) {
+			case 1:
+				erfolgreich = goldStehlen();
+		}
+		
+		
+		return erfolgreich;
 	}
 
 	public int ermittleAngreiferErfolg()
