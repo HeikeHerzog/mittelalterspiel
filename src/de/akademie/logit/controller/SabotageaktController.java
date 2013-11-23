@@ -64,38 +64,64 @@ public class SabotageaktController
 		}
 		
 		else if (angreifererfolg>0) {
+			
 			ArrayList<Land> laendereien = this.opfer.getLandListe();
 			int i = 0;
 			
-			while (i < laendereien.size() || i <= angreifererfolg)  {
+			while (i < laendereien.size() && i <= angreifererfolg)  {
 				
-				try {
-					
+							
 					if ( laendereien.get( i ).getGebaeude() != null )
-					{
-						laendereien.get(i).setGebaeude(null);
-						i++;
-						erfolg = true;
-					}
 					
-				} catch (Exception e) {
-					i++;
-				}
+						laendereien.get(i).setGebaeude(null);
+						erfolg = true;
+						i++;
+					}
 			}
-			
-		}
-		
 		return erfolg;
 	}
 
 	private boolean kornVergiften()
 	{
-		return false;
+		boolean erfolg = false;
+		int angreifererfolg = ermittleAngreiferErfolg();
+		
+		if (angreifererfolg == 0) {
+			erfolg = false;
+		}
+		else if (angreifererfolg>0) {
+			int vergiftetesKorn = this.opfer.ermittleKornMenge(angreifererfolg);
+			this.opfer.saldiereKorn(vergiftetesKorn*(-1));
+			erfolg = true;
+		}
+		
+		return erfolg;
 	}
 
 	private boolean zufriedenheitVerringern()
 	{
-		return false;
+		boolean erfolg = false;
+		int angreifererfolg = ermittleAngreiferErfolg();
+		
+		if (angreifererfolg == 0) {
+			erfolg = false;
+		}
+		else if (angreifererfolg>0) {
+			
+			int verloreneSoldaten = this.opfer.getSoldaten() - this.getSoldateneinsatz() *2;
+			
+			if (verloreneSoldaten >= this.opfer.getSoldaten()) {
+				this.opfer.setSoldaten(0);
+			}
+			else {
+				this.opfer.setSoldaten(this.opfer.getSoldaten() - this.getSoldateneinsatz() *2);
+				this.opfer.zufriedenheitAnpassen();
+			}
+			erfolg = true;
+		}
+
+		return erfolg;
+		
 	}
 
 	public boolean sabotiere( int auswahl )
@@ -104,9 +130,17 @@ public class SabotageaktController
 		switch (auswahl) {
 			case 1:
 				erfolgreich = goldStehlen();
+				break;
+			case 2:
+				erfolgreich = gebaeudeZerstoeren();
+				break;
+			case 3:
+				erfolgreich = kornVergiften();
+				break;
+			case 4:
+				erfolgreich = zufriedenheitVerringern();
+				break;
 		}
-		
-		
 		return erfolgreich;
 	}
 

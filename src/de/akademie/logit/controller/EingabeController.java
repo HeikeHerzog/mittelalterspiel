@@ -393,9 +393,8 @@ public class EingabeController
 										SabotageaktController sabotage = new SabotageaktController(
 										      opfer, aktiverSpieler,
 										      anzAngreifendeSoldaten );
-										boolean erfolgreich = sabotage
-										      .sabotiere( auswahl5a );
-										aktiverSpieler.setSabotage( false );
+										boolean erfolgreich = sabotage.sabotiere( auswahl5a );
+										aktiverSpieler.setSabotage( true );
 										opfer.setSabotageOpfer( true );
 
 										if ( erfolgreich )
