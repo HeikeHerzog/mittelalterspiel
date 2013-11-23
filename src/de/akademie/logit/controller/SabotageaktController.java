@@ -20,6 +20,11 @@ public class SabotageaktController
 	private Marktplatz marktplatz;
 	private int soldateneinsatz;
 	private int sabotageKosten = 10;
+	
+	public SabotageaktController()
+	{
+		
+	}
 
 	public SabotageaktController( Spieler opfer, Spieler aktiverSpieler,
 	      int soldateneinsatz )
@@ -90,6 +95,11 @@ public class SabotageaktController
 	public int getSoldateneinsatz()
 	{
 		return this.soldateneinsatz;
+	}
+	
+	public int getSabotageKosten()
+	{
+		return this.sabotageKosten;
 	}
 	
 	

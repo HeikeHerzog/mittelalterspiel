@@ -22,13 +22,13 @@ import de.akademie.logit.view.Spielerhauptmenumaske;
 
 /**
  * 
- * @author jutta, paul
+ * @author jutta, paul, heike
  * 
  */
 public class EingabeController
 {
 	private Marktplatz marktplatz;
-	private SabotageaktController sabotageakt;
+	private SabotageaktController sabotageakt = new SabotageaktController();
 	private EreignisController ereignisController;
 	private Spieler aktiverSpieler;
 	int anzSpieler;
@@ -340,22 +340,51 @@ public class EingabeController
 						
 						Anzeige.zeigeStringAn("Wer soll sabotiert werden?");
 						String opferliste = this.marktplatz.holeSpielernamen();
+						
+						opferliste = "0. Abbruch" + "\n" + opferliste;
 						Anzeige.zeigeStringAn(opferliste);
+						
 						int auswahl5 = select(this.anzSpieler-1);
 						
+						if (auswahl5 == 0) {
+							break;
+							
+						}
+						else if (auswahl5 != 0) {
+							Spieler opfer = this.marktplatz.getOpfer(auswahl5);
 						
+							
+							Anzeige.zeigeStringAn("Wieviele Soldaten einsetzen?");
+							int anzAngreifendeSoldaten = select( Integer.MAX_VALUE );
+							
+							if (anzAngreifendeSoldaten == 0) {
+								break;
+							}
+							else if (anzAngreifendeSoldaten > 0) {
+								
+								int gesamtSoldaten = this.aktiverSpieler.getSoldaten();
+								int gold = this.aktiverSpieler.getGold();
+																				
+								if ((anzAngreifendeSoldaten > gesamtSoldaten) || (gold < sabotageakt.getSabotageKosten() )) {
+									Anzeige.zeigeStringAn("Nicht genügend Geld oder Soldaten");
+									break;
+								}
+								else {
+									Anzeige.zeigeMenuAn( aktiverSpieler, Sabotagemenu.getInstance() );
+								}
+							}
 						
+						}		
+					}	
+				//break;
 						
-									
-						Anzeige.zeigeMenuAn( aktiverSpieler, Sabotagemenu.getInstance() );
+				//	Anzeige.zeigeMenuAn( aktiverSpieler, Sabotagemenu.getInstance() );
 
 						
 						
 						
 						
-						
-					}
-					break;
+					
 					
 				case 6:
 					Anzeige.zeigeMenuAn( aktiverSpieler, Aktionsmenu.getInstance() );
