@@ -61,6 +61,12 @@ public class Spieler
 	public boolean titelErwerben( int indexTitel, int gold,
 	      ArrayList<Land> laendereien )
 	{
+		// ist bereits König
+		if( this.titel.getTitel( this.indexTitel ).equals("Koenig") )
+		{
+			return false;
+		}
+
 		int titelKostet = titel.getGold() * indexTitel; // Titelkosten
 		int benoetigteLaender = titel.getLandmin() * indexTitel; // man benötigt
 		                                                         // für jeden
@@ -316,10 +322,10 @@ public class Spieler
 		return ration;
 	}
 
-	public void setMehl( int menge )
-	{
-		this.mehl = menge;
-	}
+//	public void setMehl( int menge )
+//	{
+//		this.mehl = menge;
+//	}
 
 	public void setKorn( int menge )
 	{
