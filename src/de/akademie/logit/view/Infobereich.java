@@ -38,6 +38,8 @@ public class Infobereich
 		System.out.println( "Ich wurde sabotiert: " + ( this.spieler.isSabotageOpfer() == true ? "Ja" : "Nein" ) );
 		System.out.println( "Ich kann sabotieren: " + ( this.spieler.isSaboteur() == true ? "Nein" : "Ja" ) );
 		System.out.println( "Zufriedenheit:       " + this.spieler.getBevoelkerungszufriedenheit() );
+		System.out.println( "Ereignis:            " + this.spieler.getEreignis() );
+		
 	}
 
 }

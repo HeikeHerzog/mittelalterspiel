@@ -22,6 +22,7 @@ public class Spieler
 	private boolean sabotageOpfer = false;
 	private boolean titelflag = false;
 	private int bevoelkerungszufriedenheit = 10;
+	private String ereignis = "";
 
 	public Spieler()
 	{}
@@ -249,9 +250,6 @@ public class Spieler
 	{
 		this.sabotageflag = _sabotageflag;
 	}
-
-	public void sabotageDurchfuehren()
-	{}
 
 	public int getSteuersatz()
 	{
@@ -606,6 +604,16 @@ public class Spieler
 	
 	public void setSoldaten(int soldaten) {
 		this.soldaten = soldaten;
+	}
+
+	
+	public String getEreignis() {
+		
+		return this.ereignis;
+	}
+	
+	public void setEreignis(String ereignis) {
+		this.ereignis = ereignis;
 	}
 
 }
