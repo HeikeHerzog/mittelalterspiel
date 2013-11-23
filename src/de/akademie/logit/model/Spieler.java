@@ -333,7 +333,9 @@ public class Spieler
 	}
 
 	public void setSabotageOpfer( boolean _sabotageOpfer )
-	{}
+	{
+		this.sabotageOpfer = _sabotageOpfer;
+	}
 
 	public boolean isSabotageOpfer()
 	{
