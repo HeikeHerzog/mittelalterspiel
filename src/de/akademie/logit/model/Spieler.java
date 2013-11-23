@@ -22,7 +22,7 @@ public class Spieler
 	private boolean sabotageOpfer = false;
 	private boolean titelflag = false;
 	private int bevoelkerungszufriedenheit = 10;
-	private String ereignis = "";
+	private String ereignis = "Es ist noch kein Ereignis aufgetreten.";
 
 	public Spieler()
 	{}
@@ -602,13 +602,14 @@ public class Spieler
 		this.soldaten = soldaten;
 	}
 
-	
-	public String getEreignis() {
-		
+	public String getEreignis()
+	{
+
 		return this.ereignis;
 	}
-	
-	public void setEreignis(String ereignis) {
+
+	public void setEreignis( String ereignis )
+	{
 		this.ereignis = ereignis;
 	}
 

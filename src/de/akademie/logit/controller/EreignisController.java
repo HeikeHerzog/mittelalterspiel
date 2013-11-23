@@ -1,7 +1,6 @@
 package de.akademie.logit.controller;
 
 import de.akademie.logit.model.Spieler;
-import de.akademie.logit.view.Anzeige;
 
 /**
  * 
@@ -22,24 +21,27 @@ public class EreignisController
 	public void ereignisTrigger()
 	{
 		int zufallEreignis = (int) ( Math.random() * 4 );
-		String ereignis = "";
 		switch ( zufallEreignis )
-		{	
+		{
 			case 0:
 				// kein Ereignis
-				this.spieler.setEreignis("Es war ein durchschnittliches Jahr, ohne besondere Vorkommnisse!");
+				this.spieler
+				      .setEreignis( "Es war ein durchschnittliches Jahr, ohne besondere Vorkommnisse!" );
 				break;
 			case 1:
 				maeuseplage();
-				this.spieler.setEreignis("Eine Mäuseplage ist aufgetreten, ein Teil des Korns wurde aufgefressen!");
+				this.spieler
+				      .setEreignis( "Eine Mäuseplage ist aufgetreten, ein Teil des Korns wurde aufgefressen!" );
 				break;
 			case 2:
 				pest();
-				this.spieler.setEreignis("Die Pest ist aufgetreten, ein Teil der Bevoelkerung ist gestorben!");
+				this.spieler
+				      .setEreignis( "Die Pest ist aufgetreten, ein Teil der Bevoelkerung ist gestorben!" );
 				break;
 			case 3:
 				guteErnte();
-				this.spieler.setEreignis("Eine gute Ernte mit mehr 50% mehr Korn als ueblich wurde eingefahren!");
+				this.spieler
+				      .setEreignis( "Eine gute Ernte mit 50% mehr Korn als ueblich wurde eingefahren!" );
 				break;
 		}
 	}
