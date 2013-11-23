@@ -64,27 +64,20 @@ public class SabotageaktController
 		}
 		
 		else if (angreifererfolg>0) {
+			
 			ArrayList<Land> laendereien = this.opfer.getLandListe();
 			int i = 0;
 			
-			while (i < laendereien.size() || i <= angreifererfolg)  {
+			while (i < laendereien.size() && i <= angreifererfolg)  {
 				
-				try {
-					
+							
 					if ( laendereien.get( i ).getGebaeude() != null )
-					{
-						laendereien.get(i).setGebaeude(null);
-						i++;
-						erfolg = true;
-					}
 					
-				} catch (Exception e) {
-					i++;
-				}
+						laendereien.get(i).setGebaeude(null);
+						erfolg = true;
+						i++;
+					}
 			}
-			
-		}
-		
 		return erfolg;
 	}
 
