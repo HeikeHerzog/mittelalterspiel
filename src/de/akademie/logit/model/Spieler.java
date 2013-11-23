@@ -597,8 +597,9 @@ public class Spieler
 		return this.bevoelkerungszufriedenheit;
 	}
 
-	public String getEreignis() {
-		
+	public String getEreignis()
+	{
+
 		return this.ereignis;
 	}
 	
