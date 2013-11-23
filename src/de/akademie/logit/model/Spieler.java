@@ -49,6 +49,8 @@ public class Spieler
 		land = new Land();
 		land.setGebaeude( new Muehle() );
 		this.marktplatz.fuegeSpielerLandHinzu( this, land );
+		
+		this.soldaten = 0;
 	}
 
 	public String getName()
@@ -600,6 +602,10 @@ public class Spieler
 	public int getBevoelkerungszufriedenheit()
 	{
 		return this.bevoelkerungszufriedenheit;
+	}
+	
+	public void setSoldaten(int soldaten) {
+		this.soldaten = soldaten;
 	}
 
 }

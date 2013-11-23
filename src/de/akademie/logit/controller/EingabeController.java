@@ -369,16 +369,18 @@ public class EingabeController
 								}
 								else {
 									Anzeige.zeigeMenuAn( aktiverSpieler, Sabotagemenu.getInstance() );
-									int auswahl5a = select( 3 );
+									int sabotageart = select( 4 );
 									
-									if (auswahl5a == 0) {
+									if (sabotageart == 0) {
 										break;
 									}
-									else if (auswahl5a > 0) {
-										sabotageakt = new SabotageaktController(this.marktplatz.getOpfer(auswahl5a), aktiverSpieler, anzAngreifendeSoldaten);
-										boolean erfolgreich = sabotageakt.sabotiere(auswahl5a);
+									else if (sabotageart > 0) {
+										sabotageakt = new SabotageaktController(this.marktplatz.getOpfer(auswahl5), aktiverSpieler, anzAngreifendeSoldaten);
+										boolean erfolgreich = sabotageakt.sabotiere(auswahl5);
 										aktiverSpieler.setSabotage(true);
-										this.marktplatz.getOpfer(auswahl5a).setSabotageOpfer(true);
+										this.marktplatz.setOpferSpieler(this.marktplatz.getOpfer(auswahl5));
+										this.marktplatz.getOpfer(auswahl5).setSabotageOpfer(true);
+										
 										
 										if (erfolgreich) {
 											Anzeige.zeigeStringAn("Sabotage erfolgreich!");
