@@ -301,6 +301,7 @@ public final class Marktplatz
 		{
 			this.mengeMehlEnde += menge;
 		}
+
 	}
 
 	public String holeSpielernamen()
@@ -440,6 +441,7 @@ public final class Marktplatz
 	{
 		return this.preisLand;
 	}
+
 
 	public Spieler getOpfer( int auswahl )
 	{

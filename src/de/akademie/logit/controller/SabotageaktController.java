@@ -154,8 +154,8 @@ public class SabotageaktController
 		if ( angreifererfolg == 0 )
 		{
 			this.getSoldateneinsatz();
-			this.aktiverSpieler.saldiereGold( sabotageKosten * ( -1 ) );
-			this.aktiverSpieler.soldatenVersorgen( soldateneinsatz );
+			this.aktiverSpieler.saldiereGold( sabotageKosten * (-1) );
+			this.aktiverSpieler.saldiereSoldaten( soldateneinsatz * (-1) );
 			return angreifererfolg;
 		}
 		else
