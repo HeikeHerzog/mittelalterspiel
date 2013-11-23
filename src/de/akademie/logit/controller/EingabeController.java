@@ -371,20 +371,33 @@ public class EingabeController
 								}
 								else {
 									Anzeige.zeigeMenuAn( aktiverSpieler, Sabotagemenu.getInstance() );
+									int auswahl5a = select( 4 );
+									
+									if (auswahl5a == 0) {
+										break;
+									}
+									else if (auswahl5a > 0) {
+										SabotageaktController sabotage = new SabotageaktController(opfer, aktiverSpieler, anzAngreifendeSoldaten);
+										boolean erfolgreich = sabotage.sabotiere(auswahl5a);
+										aktiverSpieler.setSabotage(false);
+										opfer.setSabotageOpfer(true);
+										
+										if (erfolgreich) {
+											Anzeige.zeigeStringAn("Sabotage erfolgreich!");
+										}
+										else
+										{
+											Anzeige.zeigeStringAn("Sabotage nicht erfolgreich!");
+										}
+									}
 								}
 							}
 						
 						}		
 					}	
-				//break;
+				break;
 						
-				//	Anzeige.zeigeMenuAn( aktiverSpieler, Sabotagemenu.getInstance() );
-
-						
-						
-						
-						
-					
+									
 					
 				case 6:
 					Anzeige.zeigeMenuAn( aktiverSpieler, Aktionsmenu.getInstance() );

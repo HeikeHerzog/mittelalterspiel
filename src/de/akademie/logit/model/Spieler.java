@@ -2,13 +2,15 @@ package de.akademie.logit.model;
 
 import java.util.ArrayList;
 
+import de.akademie.logit.controller.EreignisController;
+
 public class Spieler
 {
 	private String name;
 	private Titel titel = new Titel();
 	// initialer Titelindex wird im Constructor um eins inc
 	private int indexTitel = -1;
-	private int gold = 100;
+	private int gold = 10000;
 	private ArrayList<Land> laendereien = new ArrayList<Land>();
 	private int soldaten;
 	private int steuersatz;
@@ -18,7 +20,7 @@ public class Spieler
 	private int essensration = 2;
 	private int bevoelkerungsanzahl = 50;
 	private Marktplatz marktplatz;
-//	private EreignisController ereignis;
+	private EreignisController ereignis;
 	private boolean sabotageflag = true;
 	private boolean sabotageOpfer = false;
 	private boolean titelflag = false;
@@ -243,7 +245,8 @@ public class Spieler
 		this.sabotageflag = _sabotageflag;
 	}
 
-//	public void sabotageDurchfuehren() {}
+	public void sabotageDurchfuehren()
+	{}
 
 	public int getSteuersatz()
 	{
@@ -321,7 +324,8 @@ public class Spieler
 		this.korn = menge;
 	}
 
-//	public void setSabotageOpfer( boolean _sabotageOpfer ) {}
+	public void setSabotageOpfer( boolean _sabotageOpfer )
+	{}
 
 	public boolean isSabotageOpfer()
 	{
