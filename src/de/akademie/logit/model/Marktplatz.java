@@ -13,7 +13,7 @@ public final class Marktplatz
 	private int indexSpieler = 0;
 	private Spieler startSpieler;
 	private Spieler aktiverSpieler;
-//	private int soldaten;
+	// private int soldaten;
 	private int soldatenPreis = 5;
 	private int soldatenSold = 3;
 	private static int rundenzaehler = 1;
@@ -99,8 +99,7 @@ public final class Marktplatz
 	{
 		boolean gefunden = false;
 		gefunden = this.aktiverSpieler.zerstöreGesuchtesGebaeude( auswahl );
-		System.out.println( "Rückgabewert von zerstöreGesuchtesGebäude"
-		      + gefunden );
+
 		if ( gefunden )
 		{
 			return true;
@@ -245,7 +244,7 @@ public final class Marktplatz
 	}
 
 	// 15.11.2013
-	public boolean handelswareVerkaufen( int auswahl, int menge, int gold )
+	public boolean handelswareVerkaufen( int auswahl, int menge )
 	{
 		if ( auswahl == 0 || menge == 0 )
 		{

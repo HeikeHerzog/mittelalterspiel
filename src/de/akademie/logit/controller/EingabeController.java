@@ -103,6 +103,7 @@ public class EingabeController
 					spielen = false;
 					spielBeenden();
 					break;
+
 				case 1:
 					Anzeige.zeigeMenuAn( aktiverSpieler, Landmenu.getInstance() );
 					int auswahl = select( 1 );
@@ -137,6 +138,7 @@ public class EingabeController
 							break;
 					}
 					break;
+
 				case 2:
 					Anzeige.zeigeMenuAn( aktiverSpieler, Gebaeudemenu.getInstance() );
 
@@ -301,8 +303,6 @@ public class EingabeController
 							break;
 
 						case 2: // Handelsware verkaufen
-							int spielergold = aktiverSpieler.getGold();
-
 							Anzeige.zeigeMenuAn( aktiverSpieler,
 							      Handelswarenverkaufsmenu.getInstance() );
 							int welchehandelsWare = select( 2 );
@@ -318,7 +318,7 @@ public class EingabeController
 
 								boolean erfolgreich = this.marktplatz
 								      .handelswareVerkaufen( welchehandelsWare,
-								            anzHandelswarenkauf, spielergold );
+								            anzHandelswarenkauf );
 								if ( erfolgreich )
 								{
 									Anzeige.zeigeStringAn( "Handelsware verkauft!" );
@@ -333,72 +333,89 @@ public class EingabeController
 					break;
 
 				case 5:
-					if (this.aktiverSpieler.isSaboteur()) {
-						Anzeige.zeigeStringAn("Diese Runde ist keine Sabotage möglich!");
+					if ( this.aktiverSpieler.isSaboteur() )
+					{
+						Anzeige
+						      .zeigeStringAn( "Diese Runde ist keine Sabotage möglich!" );
 					}
-					else if (!this.aktiverSpieler.isSaboteur()) {
-						
-						Anzeige.zeigeStringAn("Wer soll sabotiert werden?");
+					else if ( !this.aktiverSpieler.isSaboteur() )
+					{
+
+						Anzeige.zeigeStringAn( "Wer soll sabotiert werden?" );
 						String opferliste = this.marktplatz.holeSpielernamen();
-						
+
 						opferliste = "0. Abbruch" + "\n" + opferliste;
-						Anzeige.zeigeStringAn(opferliste);
-						
-						int auswahl5 = select(this.anzSpieler-1);
-						
-						if (auswahl5 == 0) {
+						Anzeige.zeigeStringAn( opferliste );
+
+						int auswahl5 = select( this.anzSpieler - 1 );
+
+						if ( auswahl5 == 0 )
+						{
 							break;
-							
+
 						}
-						else if (auswahl5 != 0) {
-							Spieler opfer = this.marktplatz.getOpfer(auswahl5);
-						
-							
-							Anzeige.zeigeStringAn("Wieviele Soldaten einsetzen?");
+						else if ( auswahl5 != 0 )
+						{
+							Spieler opfer = this.marktplatz.getOpfer( auswahl5 );
+
+							Anzeige.zeigeStringAn( "Wieviele Soldaten einsetzen?" );
 							int anzAngreifendeSoldaten = select( Integer.MAX_VALUE );
-							
-							if (anzAngreifendeSoldaten == 0) {
+
+							if ( anzAngreifendeSoldaten == 0 )
+							{
 								break;
 							}
-							else if (anzAngreifendeSoldaten > 0) {
-								
+							else if ( anzAngreifendeSoldaten > 0 )
+							{
+
 								int gesamtSoldaten = this.aktiverSpieler.getSoldaten();
 								int gold = this.aktiverSpieler.getGold();
-																				
-								if ((anzAngreifendeSoldaten > gesamtSoldaten) || (gold < sabotageakt.getSabotageKosten() )) {
-									Anzeige.zeigeStringAn("Nicht genügend Geld oder Soldaten");
+
+								if ( ( anzAngreifendeSoldaten > gesamtSoldaten )
+								      || ( gold < sabotageakt.getSabotageKosten() ) )
+								{
+									Anzeige
+									      .zeigeStringAn( "Nicht genügend Geld oder Soldaten" );
 									break;
 								}
-								else {
-									Anzeige.zeigeMenuAn( aktiverSpieler, Sabotagemenu.getInstance() );
+								else
+								{
+									Anzeige.zeigeMenuAn( aktiverSpieler,
+									      Sabotagemenu.getInstance() );
 									int auswahl5a = select( 4 );
-									
-									if (auswahl5a == 0) {
+
+									if ( auswahl5a == 0 )
+									{
 										break;
 									}
-									else if (auswahl5a > 0) {
-										SabotageaktController sabotage = new SabotageaktController(opfer, aktiverSpieler, anzAngreifendeSoldaten);
-										boolean erfolgreich = sabotage.sabotiere(auswahl5a);
-										aktiverSpieler.setSabotage(false);
-										opfer.setSabotageOpfer(true);
-										
-										if (erfolgreich) {
-											Anzeige.zeigeStringAn("Sabotage erfolgreich!");
+									else if ( auswahl5a > 0 )
+									{
+										SabotageaktController sabotage = new SabotageaktController(
+										      opfer, aktiverSpieler,
+										      anzAngreifendeSoldaten );
+										boolean erfolgreich = sabotage
+										      .sabotiere( auswahl5a );
+										aktiverSpieler.setSabotage( false );
+										opfer.setSabotageOpfer( true );
+
+										if ( erfolgreich )
+										{
+											Anzeige
+											      .zeigeStringAn( "Sabotage erfolgreich!" );
 										}
 										else
 										{
-											Anzeige.zeigeStringAn("Sabotage nicht erfolgreich!");
+											Anzeige
+											      .zeigeStringAn( "Sabotage nicht erfolgreich!" );
 										}
 									}
 								}
 							}
-						
-						}		
-					}	
-				break;
-						
-									
-					
+
+						}
+					}
+					break;
+
 				case 6:
 					Anzeige.zeigeMenuAn( aktiverSpieler, Aktionsmenu.getInstance() );
 
@@ -462,7 +479,8 @@ public class EingabeController
 								{
 									// genug Korn zum Mahlen vorhanden
 									aktiverSpieler.saldiereKorn( wievielKornMahlen );
-									aktiverSpieler.setMehl( wievielKornMahlen );
+									aktiverSpieler.saldiereHandelsware( 2,
+									      wievielKornMahlen );
 									Anzeige.zeigeStringAn( "Korn mahlen erfolgreich" );
 								}
 								else
@@ -537,10 +555,10 @@ public class EingabeController
 		this.aktiverSpieler.setTitelflag( false );
 		this.ereignisController.ereignisTrigger();
 		this.aktiverSpieler.soldatenVersorgen( this.marktplatz.getSold() ); // Soldaten
-																								  // versorgen
-																								  // (füttern
-																								  // und
-																								  // bezahlen)
+		                                                                    // versorgen
+		                                                                    // (füttern
+		                                                                    // und
+		                                                                    // bezahlen)
 		this.aktiverSpieler.bevoelkerungFuettern();
 		this.aktiverSpieler.kornErntenUndVerteilen();
 		this.aktiverSpieler.zufriedenheitAnpassen();
